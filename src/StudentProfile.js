@@ -1,11 +1,11 @@
-import React, { Component } from '.react';
+import React, { Component } from 'react';
 
 
 class StudentProfile extends Component {
   render () {
     return (
       <div>
-        <p>TESTING</p>
+        <p>Student Profile</p>
       </div>
     )
   }
