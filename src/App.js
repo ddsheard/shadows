@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axoios from 'axios';
 import DeveloperProfile from './DeveloperProfile';
+import StudentProfile from './StudentProfile';
 import base from './rebase';
 // import {
 //   BrowserRouter as Router,
