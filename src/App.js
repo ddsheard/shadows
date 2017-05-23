@@ -6,8 +6,7 @@ import base from './rebase';
 //   BrowserRouter as Router,
 //   Route,
 //   Link
-// } from 'react-router-dom'
-
+// } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
