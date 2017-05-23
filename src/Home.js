@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
-class LinkToStudents extends Component {
+class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Link to Students</h1>
+        <h1>Home</h1>
       </div>
     )
   }
 }
 
-export default LinkToStudents;
+export default Home;
