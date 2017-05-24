@@ -20,6 +20,15 @@ import './App.css';
 window.base = base;
 
 class App extends Component {
+
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     user: {},
+  //   }
+  // }
+
+
   render() {
     return (
       <Router>
