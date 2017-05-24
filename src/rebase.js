@@ -1,12 +1,12 @@
 var Rebase = require ('re-base');
-var firebase = require('firebase');
-var app = firebase.initializeApp({
+var config = {
   apiKey: "AIzaSyDTYmY2t9FBGyjvPeeMiA48YECI9pxahIE",
-  authDomain: "shadows-db.firebaseapp.com",
-  databaseURL: "https://shadows-db.firebaseio.com",
-  storageBucket: "shadows-db.appspot.com",
-  messagingSenderId: "653479773501"
+   authDomain: "shadows-db.firebaseapp.com",
+   databaseURL: "https://shadows-db.firebaseio.com",
+   projectId: "shadows-db",
+   storageBucket: "shadows-db.appspot.com",
+   messagingSenderId: "653479773501"
 
-});
-var base = Rebase.createClass(app.database());
+};
+var base = Rebase.createClass(config);
 export default base;
