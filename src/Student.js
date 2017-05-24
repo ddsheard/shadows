@@ -21,7 +21,7 @@ import React, { Component } from 'react';
     render() {
       return (
         <div>
-          <h1>Students</h1>
+          <h1>Students Something or Other Goes Here</h1>
         </div>
       )
     }
