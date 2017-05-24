@@ -49,6 +49,8 @@ class App extends Component {
           <Route path="/student" component={Student} />
           <Route path="/studentprofile" component={StudentProfile} />
           <Route path="/linktostudents" component={LinkToStudents} />
+          <Route path="/developerlogin" component={DeveloperLogIn} />
+          <Route path="/studentlogin" component={StudentLogIn} />
         </div>
       </Router>
 
