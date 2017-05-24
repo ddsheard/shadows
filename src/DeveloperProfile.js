@@ -3,8 +3,11 @@ import axios from 'axios';
 
 class DeveloperProfile extends Component {
 
-  componentDidMount() {
-    axios.get(`https://api.github.com/repositories`).then(reponse => this.setState({}))
+  componentDidMount () {
+    axios.get('https://api.github.com/users/ddsheard').then(response => {
+      console.log(response.data)
+      this.setState({owner: response.data});
+    })
   }
 
   render() {
