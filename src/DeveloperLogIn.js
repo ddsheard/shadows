@@ -29,6 +29,7 @@ class DeveloperLogIn extends Component {
         this.setState({
           user: data.user
         })
+        this.props.history.push(`/developerinput/`);
       }
       //basic
       base.authWithOAuthPopup('github', authHandler);
@@ -62,5 +63,6 @@ class DeveloperLogIn extends Component {
     )
   }
 }
+
 
 export default DeveloperLogIn;
