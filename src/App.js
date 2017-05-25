@@ -6,7 +6,7 @@ import DeveloperLogIn from './DeveloperLogIn';
 import DeveloperInput from './DeveloperInput';
 import DeveloperProfile from './DeveloperProfile';
 import StudentLogIn from './StudentLogIn';
-import StudentInput from './StudentInput';
+import Student from './Student';
 import StudentProfile from './StudentProfile';
 import LinkToStudents from './LinkToStudents';
 import Err from './Err';
@@ -58,7 +58,7 @@ class App extends Component {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/developerinput">DeveloperInput</Link></li>
             <li><Link to="/developerprofile">Developer Profile</Link></li>
-            <li><Link to="/studentInput">Student Input</Link></li>
+            <li><Link to="/student">Student</Link></li>
             <li><Link to="/studentprofile">Student Profile</Link></li>
             <li><Link to="/linktostudents">Link to Students</Link></li>
           </ul>
@@ -67,7 +67,7 @@ class App extends Component {
           {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
           <Route path="/developerprofile" component={DeveloperProfile} />
           <Route path="/developerinput" component={DeveloperInput} />
-          <Route path="/studentinput" component={StudentInput} />
+          <Route path="/student" component={Student} />
           <Route path="/studentprofile" component={StudentProfile} />
           <Route path="/linktostudents" component={LinkToStudents} />
           <Route path="/developerlogin" component={DeveloperLogIn} />
@@ -76,7 +76,7 @@ class App extends Component {
           <Route path="/studentlogin" component={StudentLogIn} />
         </div>
       </Router>
-    
+
     );
   }
 }
