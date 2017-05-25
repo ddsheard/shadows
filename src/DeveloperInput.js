@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddDevForm from './AddDevForm';
 import axios from 'axios';
 import base from './rebase';
 
@@ -25,17 +26,23 @@ class DeveloperInput extends Component {
   //    .then(response => {this.setState({owner: response.data.owner})})
   //  }
 
-  logOut () {
-    console.log('logOut')
-    base.unauth()
-  }
+  // logOut () {
+  //   console.log('logOut')
+  //   base.unauth()
+  // }
 
   render() {
     return (
       <div>
         <h1>Developer Page</h1>
-        <h3>{name}</h3>
-        <button onClick={this.logOut}> Log Out </button>
+
+        <div className="githubInfo"></div>
+
+        <div className="shadowDevInfo">
+
+          <AddDevForm addDeveloperInput={this.props.addDeveloperInput}/>
+
+        </div>
       </div>
     )
   }
