@@ -6,7 +6,7 @@ import DeveloperLogIn from './DeveloperLogIn';
 import DeveloperInput from './DeveloperInput';
 import DeveloperProfile from './DeveloperProfile';
 import StudentLogIn from './StudentLogIn';
-import Student from './Student';
+import StudentInput from './StudentInput';
 import StudentProfile from './StudentProfile';
 import LinkToStudents from './LinkToStudents';
 import Err from './Err';
@@ -29,20 +29,53 @@ class App extends Component {
     this.state = {
       user: {}
     }
+
+    this.addDeveloperInput = this.addDeveloperInput.bind(this);
+    this.state = {
+      devs: {}
+    }
   }
 
+  addDeveloperInput(dev) {
+    //update our devs state
+    const devs = {...this.state.devs};
+    //add in our new dev
+    const timestamp = Date.now();
+    devs[`dev-${timestamp}`] = dev;
+    //set state
+    this.setState({devs});
+  }
+
+  componentDidMount(){
+    base.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log('User is signed in', user);
+        this.setState({
+          user: user
+        })
+      }
+    });
+  }
 
   githublogin (){
     var authHandler = (error, data) => {
       console.log('user', data.user)
+      //THIS IS SETTING THE STATE this.setState
       this.setState({
         user: data.user
       })
+      this.getData();
     }
     //basic
     base.authWithOAuthPopup('github', authHandler);
   }
 
+  getData() {
+    const user = this.state.user;
+    axios.get('https://api.github.com/user').then(response => {
+      this.setState({user: response.data})})
+      console.log(user);
+  }
 
 
 
@@ -51,6 +84,9 @@ class App extends Component {
     // let loggedin = this.state.user ? true : null
     // console.log(loggedin);
     return (
+
+
+
       <Router>
         <div>
 
@@ -58,16 +94,18 @@ class App extends Component {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/developerinput">DeveloperInput</Link></li>
             <li><Link to="/developerprofile">Developer Profile</Link></li>
-            <li><Link to="/student">Student</Link></li>
+            <li><Link to="/studentinput">StudentInput</Link></li>
             <li><Link to="/studentprofile">Student Profile</Link></li>
             <li><Link to="/linktostudents">Link to Students</Link></li>
           </ul>
+
+          <DeveloperInput addDeveloperInput={this.addDeveloperInput} />
 
           <Route exact path="/" component={Home} />
           {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
           <Route path="/developerprofile" component={DeveloperProfile} />
           <Route path="/developerinput" component={DeveloperInput} />
-          <Route path="/student" component={Student} />
+          <Route path="/studentinput" component={StudentInput} />
           <Route path="/studentprofile" component={StudentProfile} />
           <Route path="/linktostudents" component={LinkToStudents} />
           <Route path="/developerlogin" component={DeveloperLogIn} />
