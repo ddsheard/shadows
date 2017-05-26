@@ -3,7 +3,7 @@ import AddDevForm from './AddDevForm';
 import axios from 'axios';
 import base from './rebase';
 
-const urlForUsername = username => `https://api.github.com/users/${username}`
+// const urlForUsername = username => `https://api.github.com/users/${username}`
 // const urlForAuthUser = user => `https://api.github.com/${user}`
 
 class DeveloperInput extends Component {
@@ -15,14 +15,16 @@ class DeveloperInput extends Component {
 
 
 
-  componentDidMount () {
-    axios.get(urlForUsername(this.props.username))
-          .then(response => response.data)
-          .then(response => {
-            this.setState({githubData: response})
-          })
-
-  }
+  // componentDidMount () {
+  //   console.log(this.props);
+  //   console.log(this.props.username);
+  //   axios.get(urlForUsername(this.props.username))
+  //         .then(response => response.data)
+  //         .then(response => {
+  //           this.setState({githubData: response})
+  //         })
+  //
+  // }
   // componentDidMount () {
   //   axios.get(urlForAuthUser(this.props.user))
   //         .then(response => response.data)
@@ -44,13 +46,15 @@ class DeveloperInput extends Component {
   // }
 
   render() {
-    if (!this.state.githubData) return <p>Loading...</p>
+    // if (!this.state.githubData) return <p>Loading...</p>
+    // console.log(this.state.githubData);
     return (
       <div>
         <h1>Developer Page</h1>
 
         <div className="githubInfo"></div>
-          <h1>{this.state.githubData.name}</h1>
+          {/* <h1>{this.props.user.name}</h1> */}
+
         <div className="shadowDevInfo">
 
           <AddDevForm addDeveloperInput={this.props.addDeveloperInput}/>
