@@ -18,10 +18,10 @@ import base from './rebase';
   //   })
   // }
 
-logOut () {
-  console.log('Log Out');
-  base.unauth()
-}
+  // logOut () {
+  //   console.log('Log Out');
+  //   base.unauth()
+  // }
     render() {
       return (
         <div>
