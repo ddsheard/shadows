@@ -57,6 +57,7 @@ class DeveloperLogIn extends Component {
       <div>
         <p>Dev login</p>
         {/* <button onClick={this.githubLogin.bind(this)}>Sign in Github</button> */}
+        Hello
         {this.loginOrLogoutButton()}
         <h1>Blah</h1>
       </div>
