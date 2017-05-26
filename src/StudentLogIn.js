@@ -3,50 +3,35 @@ import React, { Component } from 'react';
 import base from './rebase';
 
 class StudentLogIn extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: {}
-    }
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     user: {}
+  //   }
+  // }
 
   componentDidMount() {
-    base.auth().onAuthStateChanged(user => {
-      if (user) {
-        console.log('This user is logged it', user);
-        this.setState({
-          user: user
-        })
-      }
-    });
+
   }
 
-  githubLogin() {
-    console.log('github');
-    var authHandler = (error, data) => {
-      console.log('user', data.user)
-      this.setState({
-        user: data.user
-      })
-      this.props.history.push(`/studentinput/`);
-    }
-    base.authWithOAuthPopup('github', authHandler);
-  }
+
 
   logout() {
-    console.log('Log Out');
-    base.unauth()
-    this.setState({
-      user: {}
-    })
+    // console.log('Log Out');
+    // base.unauth()
+    // this.setState({
+    //   user: {}
+    // })
   }
 
+  // <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logout.bind(this)} {...pickles}/>} />
 
   loginOrLogoutButton() {
-    if (this.state.user.uid) {
-      return <button onClick={this.logout.bind(this)}>Logout</button>
+    console.log(this.props.user.uid)
+    if (this.props.user.uid) {
+      return <button onClick={this.props.logout.bind(this)}>Logout</button>
     } else {
-      return <button onClick={this.githubLogin.bind(this)}>Login</button>
+      return <button onClick={this.props.githublogin.bind(this)}>Login</button>
     }
   }
   render() {

@@ -25,7 +25,7 @@ import base from './rebase';
     render() {
       return (
         <div>
-          <h1>Studen Page</h1>
+          <h1>Student Page</h1>
           <button onClick={this.logOut}>Log Out</button>
         </div>
       )
