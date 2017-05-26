@@ -9,7 +9,7 @@ import StudentLogIn from './StudentLogIn';
 import StudentInput from './StudentInput';
 import StudentProfile from './StudentProfile';
 import LinkToStudents from './LinkToStudents';
-import Err from './Err';
+// import Err from './Err';
 import base from './rebase';
 import {
   BrowserRouter as Router,
@@ -27,13 +27,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {}
-    }
-
-    this.addDeveloperInput = this.addDeveloperInput.bind(this);
-    this.state = {
+      user: {},
       devs: {}
     }
+    this.addDeveloperInput = this.addDeveloperInput.bind(this);
   }
 
   addDeveloperInput(dev) {
@@ -47,11 +44,29 @@ class App extends Component {
   }
 
   componentDidMount(){
+    // base.auth().onAuthStateChanged(user => {
+    //   if(user){
+    //     this.setState({
+    //       user: user
+    //     })
+    //     base.syncState(`/attraction/${this.props.match.params.id}/comments`, {
+    //       context: this,
+    //       state: "comments",
+    //       asArray: true
+    //     })
+    //   } else {
+    //     this.setState({
+    //       user: {},
+    //       comments: {}
+    //     })
+    //   }
+    // })
+
     base.auth().onAuthStateChanged(user => {
       if (user) {
         console.log('User is signed in', user);
-        this.setState({
-          user: user
+        base.syncState({
+          firebaseUser: user
         })
       }
     });
@@ -60,36 +75,36 @@ class App extends Component {
   githublogin (){
     var authHandler = (error, data) => {
       console.log('I am inside the auth handler', data)
-      //THIS IS SETTING THE STATE this.setState
-      // this.setState({
-      //   user: data.user
-      // })
-      // this.getData();
+      // THIS IS SETTING THE STATE this.setState
+      this.setState({
+        githubUser: data.user,
+        token: data.credential.accessToken
+      })
+      this.getData();
     }
     //basic
     base.authWithOAuthPopup('github', authHandler);
   }
 
-  // getData() {
-  //   const user = this.state.user;
-  //   console.log('inside of getData()', user);
-  //   axios.get('https://api.github.com/user').then(response => {
-  //     this.setState({user: response.data})})
-  // }
+  logOut () {
+    console.log('Log Out');
+    base.unauth()
+  }
 
-
+  getData() {
+    const user = this.state.githubUser;
+    console.log('inside of getData()', user);
+    axios.get(`https://api.github.com/user?access_token=${this.state.token}`).then(response => {
+      this.setState({user: response.data})})
+  }
 
   render() {
     console.log(this.state.user);
     // let loggedin = this.state.user ? true : null
     // console.log(loggedin);
     return (
-
-
-
       <Router>
         <div>
-
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/developerinput">DeveloperInput</Link></li>
@@ -98,8 +113,6 @@ class App extends Component {
             <li><Link to="/studentprofile">Student Profile</Link></li>
             <li><Link to="/linktostudents">Link to Students</Link></li>
           </ul>
-
-
 
           <Route exact path="/" component={Home} />
           {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
@@ -111,12 +124,14 @@ class App extends Component {
           <Route path="/developerlogin" component={DeveloperLogIn} />
           {/* <Route path="/developerlogin" render={(pickles) => (this.state.user ? (<Redirect to="/developerinput" />):(
           <DeveloperLogIn githubLogin={this.githubLogin} logOut={this.logOut}{...pickles} /> ))} /> */}
-          <Route path="/studentlogin" component={StudentLogIn} />
+          <Route path="/studentlogin" render={(pickles) => <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logOut.bind(this)} {...pickles}/>} />
         </div>
       </Router>
-
     );
   }
 }
+
+//
+// path="/..../${this.state.user.uid}"
 
 export default App;
