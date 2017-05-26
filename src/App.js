@@ -99,7 +99,7 @@ class App extends Component {
             <li><Link to="/linktostudents">Link to Students</Link></li>
           </ul>
 
-          <DeveloperInput addDeveloperInput={this.addDeveloperInput} />
+          {/* <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> */}
 
           <Route exact path="/" component={Home} />
           {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}

@@ -54,7 +54,7 @@ class StudentLogIn extends Component {
       <div>
         <p>Student Log In</p>
         {this.loginOrLogoutButton()}
-        <p>{this.props.user.name}</p>
+        {/* <p>{this.props.user.name}</p> */}
       </div>
     )
   }
