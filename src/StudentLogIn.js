@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import base from './rebase';
 
 class StudentLogIn extends Component {
+
   // constructor() {
   //   super();
   //   this.state = {
@@ -11,7 +12,14 @@ class StudentLogIn extends Component {
   // }
 
   componentDidMount() {
-
+    // base.auth().onAuthStateChanged(user => {
+    //   if (user) {
+    //     console.log('User is signed in.', user);
+    //     this.setState({
+    //       user: user
+    //     })
+    //    }
+    // });
   }
 
 
@@ -24,7 +32,6 @@ class StudentLogIn extends Component {
     // })
   }
 
-  // <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logout.bind(this)} {...pickles}/>} />
 
   loginOrLogoutButton() {
     console.log(this.props.user.uid)
