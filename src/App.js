@@ -59,23 +59,23 @@ class App extends Component {
 
   githublogin (){
     var authHandler = (error, data) => {
-      console.log('user', data.user)
+      console.log('I am inside the auth handler', data)
       //THIS IS SETTING THE STATE this.setState
-      this.setState({
-        user: data.user
-      })
-      this.getData();
+      // this.setState({
+      //   user: data.user
+      // })
+      // this.getData();
     }
     //basic
     base.authWithOAuthPopup('github', authHandler);
   }
 
-  getData() {
-    const user = this.state.user;
-    axios.get('https://api.github.com/user').then(response => {
-      this.setState({user: response.data})})
-      console.log(user);
-  }
+  // getData() {
+  //   const user = this.state.user;
+  //   console.log('inside of getData()', user);
+  //   axios.get('https://api.github.com/user').then(response => {
+  //     this.setState({user: response.data})})
+  // }
 
 
 
@@ -99,12 +99,12 @@ class App extends Component {
             <li><Link to="/linktostudents">Link to Students</Link></li>
           </ul>
 
-          {/* <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> */}
+
 
           <Route exact path="/" component={Home} />
           {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
           <Route path="/developerprofile" component={DeveloperProfile} />
-          <Route path="/developerinput" component={DeveloperInput} />
+          <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> } />
           <Route path="/studentinput" component={StudentInput} />
           <Route path="/studentprofile" component={StudentProfile} />
           <Route path="/linktostudents" component={LinkToStudents} />
