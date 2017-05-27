@@ -43,7 +43,14 @@ class App extends Component {
     this.setState({devs});
   }
 
-  componentDidMount(){
+
+////////////// New login
+
+
+
+  ///////////////
+
+  //componentDidMount(){
     // base.auth().onAuthStateChanged(user => {
     //   if(user){
     //     this.setState({
@@ -61,45 +68,48 @@ class App extends Component {
     //     })
     //   }
     // })
-
-    base.auth().onAuthStateChanged(user => {
-      if (user) {
-        console.log('User is signed in', user);
-        base.syncState({
-          firebaseUser: user
-        })
-      }
-    });
-  }
-
-  githublogin (){
-    var authHandler = (error, data) => {
-      console.log('I am inside the auth handler', data)
-      // THIS IS SETTING THE STATE this.setState
-      this.setState({
-        githubUser: data.user,
-        token: data.credential.accessToken
-      })
-      this.getData();
-    }
-    //basic
-    base.authWithOAuthPopup('github', authHandler);
-  }
-
-  logOut () {
-    console.log('Log Out');
-    base.unauth()
-  }
-
-  getData() {
-    const user = this.state.githubUser;
-    console.log('inside of getData()', user);
-    axios.get(`https://api.github.com/user?access_token=${this.state.token}`).then(response => {
-      this.setState({user: response.data})})
-  }
+///////////////////////////////////////////////////////////////
+//The code below is the old login
+  //   base.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       console.log('User is signed in', user);
+  //       base.syncState({
+  //         firebaseUser: user
+  //       })
+  //     }
+  //   });
+  // }
+  //
+  // githublogin (){
+  //   var authHandler = (error, data) => {
+  //     console.log('I am inside the auth handler', data)
+  //     // THIS IS SETTING THE STATE this.setState
+  //     this.setState({
+  //       githubUser: data.user,
+  //       token: data.credential.accessToken
+  //     })
+  //     this.getData();
+  //   }
+  //   //basic
+  //   base.authWithOAuthPopup('github', authHandler);
+  // }
+  //
+  // logOut () {
+  //   console.log('Log Out');
+  //   base.unauth()
+  // }
+  //
+  // getData() {
+  //   const user = this.state.githubUser;
+  //   console.log('inside of getData()', user);
+  //   axios.get(`https://api.github.com/user?access_token=${this.state.token}`).then(response => {
+  //     this.setState({user: response.data})})
+  // }
+  // End of the old login
+  //////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() {
-    console.log(this.state.user);
+    // console.log(this.state.user);
     // let loggedin = this.state.user ? true : null
     // console.log(loggedin);
     return (
@@ -121,10 +131,11 @@ class App extends Component {
           <Route path="/studentinput" component={StudentInput} />
           <Route path="/studentprofile" component={StudentProfile} />
           <Route path="/linktostudents" component={LinkToStudents} />
-          <Route path="/developerlogin" component={DeveloperLogIn} />
+          {/* <Route path="/developerlogin" component={DeveloperLogIn} /> */}
+          <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId} />} />
           {/* <Route path="/developerlogin" render={(pickles) => (this.state.user ? (<Redirect to="/developerinput" />):(
           <DeveloperLogIn githubLogin={this.githubLogin} logOut={this.logOut}{...pickles} /> ))} /> */}
-          <Route path="/studentlogin" render={(pickles) => <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logOut.bind(this)} {...pickles}/>} />
+          {/* <Route path="/studentlogin" render={(pickles) => <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logOut.bind(this)} {...pickles}/>} /> */}
         </div>
       </Router>
     );
