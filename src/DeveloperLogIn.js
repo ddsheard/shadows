@@ -43,6 +43,7 @@ class DeveloperLogIn extends Component {
         uid:authData.user.uid,
         developer: data.developer || authData.user.uid
       })
+
     });
   }
 
@@ -51,11 +52,14 @@ renderLogin() {
     <nav>
       <p>Sign in to mange your Developer Account</p>
       <button className="github" onClick={() => this.authenticate('github')}>Log In with Github</button>
+
     </nav>
+
   )
 
 
 }
+
 
 
   // componentDidMount() {
@@ -122,7 +126,7 @@ renderLogin() {
         Hello
         {/* {this.loginOrLogoutButton()} */}
         {logout}
-        <h1>Blah</h1>
+        <h1>Blah THis is the Dev LogIn Page</h1>
       </div>
     )
   }
