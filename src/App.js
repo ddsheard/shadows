@@ -28,9 +28,12 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      devs: {}
+      devs: {},
+      stud: {}
     }
     this.addDeveloperInput = this.addDeveloperInput.bind(this);
+    this.addStudentInput = this.addStudentInput.bind(this);
+
   }
 
   addDeveloperInput(dev) {
@@ -43,6 +46,15 @@ class App extends Component {
     this.setState({devs});
   }
 
+  addStudentInput(stu) {
+    // Update Students State
+    const stud = {...this.state.stud};
+    // Add in New Student
+    const timestamp = Date.now();
+    stud[`stu-${timestamp}`] = stu;
+    // Set Student State
+    this.setState({stud});
+  }
 
 ////////////// New login
 
@@ -122,17 +134,22 @@ class App extends Component {
             <li><Link to="/studentinput">StudentInput</Link></li>
             <li><Link to="/studentprofile">Student Profile</Link></li>
             <li><Link to="/linktostudents">Link to Students</Link></li>
+            <li><Link to="/addstuform.js"> Student Form</Link></li>
           </ul>
 
           <Route exact path="/" component={Home} />
           {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
           <Route path="/developerprofile" component={DeveloperProfile} />
           <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> } />
-          <Route path="/studentinput" component={StudentInput} />
+          <Route path="/studentinput" render={(pickles) =>
+          <StudentInput addStudentInput={this.addStudentInput} /> } />
           <Route path="/studentprofile" component={StudentProfile} />
           <Route path="/linktostudents" component={LinkToStudents} />
           {/* <Route path="/developerlogin" component={DeveloperLogIn} /> */}
           <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId} />} />
+
+          <Route path="/studentlogin" render={(pickles) =>
+          <StudentLogIn studentId={this.props.studentId} />} />
           {/* <Route path="/developerlogin" render={(pickles) => (this.state.user ? (<Redirect to="/developerinput" />):(
           <DeveloperLogIn githubLogin={this.githubLogin} logOut={this.logOut}{...pickles} /> ))} /> */}
           {/* <Route path="/studentlogin" render={(pickles) => <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logOut.bind(this)} {...pickles}/>} /> */}

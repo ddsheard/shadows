@@ -43,7 +43,7 @@ class StudentTest extends component {
     return(
       <div>
         <h1>Student Test Page</h1>
-        {this.loginOrLogoutButton()}
+
       </div>
     )
   }
