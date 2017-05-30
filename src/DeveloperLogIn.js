@@ -45,7 +45,9 @@ class DeveloperLogIn extends Component {
       })
 
     });
+
   }
+
 
 renderLogin() {
   return (
@@ -54,10 +56,7 @@ renderLogin() {
       <button className="github" onClick={() => this.authenticate('github')}>Log In with Github</button>
 
     </nav>
-
   )
-
-
 }
 
 

@@ -21,12 +21,12 @@ class Home extends Component {
                 </p>
               </div>
               <div className="card-action">
-                <Link to='DeveloperLogIn'>
-                  <button className='waves-effect waves-light btn' type='submit'>Developer</button>
-                </Link>
-                <Link to='StudentLogIn'>
-                  <button className='waves-effect waves-light btn' type='submit'>Student</button>
-                </Link>
+
+                  <button className='waves-effect waves-light btn' onClick={this.props.clickedOnDev.bind(this)} type='submit'>Developer</button>
+
+
+                  <button className='waves-effect waves-light btn' onClick={this.props.clickedOnStudent.bind(this)} type='submit'>Student</button>
+
               </div>
             </div>
           </div>
