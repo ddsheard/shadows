@@ -54,9 +54,16 @@ class StudentLogIn extends Component {
         <p>Sign in to mangage your Student Account</p>
         <button className='github' onClick={() =>
         this.authenticate('github')}>Log in with GitHub</button>
+        {/* {this.state.getData()} */}
       </nav>
     )
   }
+
+  // getData() {
+  //   const user = this.state.githubUser;
+  //   console.log('inside of getData()', user);
+  //   axios.get(`https://api.github.com/user?access_token=${this.state.token}`).then(response => ({user: response.data}))
+
 
   render() {
     const logout = <button>Log Out!</button>;
