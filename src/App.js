@@ -28,36 +28,95 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      devs: {},
-      stud: {}
+      type: ''
     }
-    this.addDeveloperInput = this.addDeveloperInput.bind(this);
-    this.addStudentInput = this.addStudentInput.bind(this);
+    //Input fields for Dev and student -firebase
+    // this.addDeveloperInput = this.addDeveloperInput.bind(this);
+    // this.addStudentInput = this.addStudentInput.bind(this);
 
   }
 
-  addDeveloperInput(dev) {
-    //update our devs state
-    const devs = {...this.state.devs};
-    //add in our new dev
-    const timestamp = Date.now();
-    devs[`dev-${timestamp}`] = dev;
-    //set state
-    this.setState({devs});
+
+  // addDeveloperInput(dev) {
+  //   //update our devs state
+  //   const devs = {...this.state.devs};
+  //   //add in our new dev
+  //   const timestamp = Date.now();
+  //   devs[`dev-${timestamp}`] = dev;
+  //   //set state
+  //   this.setState({devs});
+  // }
+  //
+  // addStudentInput(stu) {
+  //   // Update Students State
+  //   const stud = {...this.state.stud};
+  //   // Add in New Student
+  //   const timestamp = Date.now();
+  //   stud[`stu-${timestamp}`] = stu;
+  //   // Set Student State
+  //   this.setState({stud});
+  // }
+
+  //   base.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       console.log('User is signed in', user);
+  //       base.syncState({
+  //         firebaseUser: user
+  //       })
+  //     }
+  //   });
+  // }
+
+  clickedOnDev(){
+    this.setState({
+      type: 'developer'
+    })
+    this.bothLoggedIn() ;
   }
 
-  addStudentInput(stu) {
-    // Update Students State
-    const stud = {...this.state.stud};
-    // Add in New Student
-    const timestamp = Date.now();
-    stud[`stu-${timestamp}`] = stu;
-    // Set Student State
-    this.setState({stud});
+  clickedOnStudent(){
+    this.setState({
+      type: 'student'
+    })
+    this.bothLoggedIn();
+  }
+
+  bothLoggedIn(){
+      var authHandler = (error, data) => {
+        console.log('I am inside the auth handler', data)
+        // THIS IS SETTING THE STATE this.setState
+        this.setState({
+          user: data.user,
+          token: data.credential.accessToken
+        })
+        // this.getData();
+        console.log(this.state.user);
+
+      }
+      //basic
+      base.authWithOAuthPopup('github', authHandler);
+      // this.props.history.push(`/developerinput/`);
+    }
+
+    mainLogIn () {
+      if (this.state.type === 'developer') {
+       return (<Redirect to="/developerinput" />)
+     } else if (this.state.type === 'student') {
+       return (<Redirect to="/studentinput" />)
+     } else {
+       return (<Home clickedOnDev={this.clickedOnDev.bind(this)}  clickedOnStudent={this.clickedOnStudent.bind(this)}/>)
+     }
+  }
+
+  logout() {
+    console.log('clicked');
+    base.unauth()
+    this.setState({user: {}})
   }
 
 ////////////// New login
 
+// this.props.history.push(`/developerinput/`);
 
 
   ///////////////
@@ -121,23 +180,35 @@ class App extends Component {
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
   render() {
+    console.log(this.state.user);
     // console.log(this.state.user);
     // let loggedin = this.state.user ? true : null
     // console.log(loggedin);
     return (
       <Router>
         <div>
+          <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/developerinput">DeveloperInput</Link></li>
+            {this.logoutButton}
+            <li onClick={this.logout.bind(this)}>Logout</li>
+            {/* <li><Link to="/developerinput">DeveloperInput</Link></li>
             <li><Link to="/developerprofile">Developer Profile</Link></li>
             <li><Link to="/studentinput">StudentInput</Link></li>
             <li><Link to="/studentprofile">Student Profile</Link></li>
             <li><Link to="/linktostudents">Link to Students</Link></li>
-            <li><Link to="/addstuform.js"> Student Form</Link></li>
+            <li><Link to="/addstuform.js"> Student Form</Link></li> */}
           </ul>
+        </nav>
 
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={(pickles) => this.mainLogIn()} />
+
+
+            {/* this.state.user.uid ?
+            (<Redirect to="/developerinput" />)  : (<Home clickedOnDev={this.clickedOnDev.bind(this)} />) )
+            } /> */}
+
+
           {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
           <Route path="/developerprofile" component={DeveloperProfile} />
           <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> } />
