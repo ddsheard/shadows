@@ -49,7 +49,7 @@ class DeveloperInput extends Component {
     // if (!this.state.githubData) return <p>Loading...</p>
     // console.log(this.state.githubData);
     return (
-      <div>
+      <div className='container center-align'>
         <h1>Developer Page</h1>
 
         <div className="githubInfo"></div>
