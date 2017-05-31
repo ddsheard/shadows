@@ -18,6 +18,8 @@ import base from './rebase';
   //   })
   // }
 
+  // THIS IS HERE TO PUSH ONLY
+
   // logOut () {
   //   console.log('Log Out');
   //   base.unauth()
