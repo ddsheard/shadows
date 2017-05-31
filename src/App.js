@@ -68,26 +68,21 @@ class App extends Component {
   // }
 
   clickedOnDev(){
-    this.setState({
-      type: 'developer'
-    })
-    this.bothLoggedIn() ;
+    this.loggedInAs("developer");
   }
 
   clickedOnStudent(){
-    this.setState({
-      type: 'student'
-    })
-    this.bothLoggedIn();
+    this.loggedInAs("student");
   }
 
-  bothLoggedIn(){
+ loggedInAs(type){
       var authHandler = (error, data) => {
         console.log('I am inside the auth handler', data)
         // THIS IS SETTING THE STATE this.setState
         this.setState({
           user: data.user,
-          token: data.credential.accessToken
+          token: data.credential.accessToken,
+          type: type
         })
         // this.getData();
         console.log(this.state.user);
@@ -106,6 +101,12 @@ class App extends Component {
      } else {
        return (<Home clickedOnDev={this.clickedOnDev.bind(this)}  clickedOnStudent={this.clickedOnStudent.bind(this)}/>)
      }
+  }
+
+  loggedOutofSite () {
+    if (){
+      return(<Redirect to="/" />)
+    }
   }
 
   logout() {
@@ -190,7 +191,6 @@ class App extends Component {
           <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
-            {this.logoutButton}
             <li onClick={this.logout.bind(this)}>Logout</li>
             {/* <li><Link to="/developerinput">DeveloperInput</Link></li>
             <li><Link to="/developerprofile">Developer Profile</Link></li>

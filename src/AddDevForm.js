@@ -46,16 +46,16 @@ class AddDevForm extends Component {
                 <label>Teck Stack</label>
                 <select ref={(input) => this.tech = input} className="browser-default">
                   <option value="" disabled selected>Choose your option</option>
-                  <option value="1">JavaScript</option>
-                  <option value="2">Java</option>
-                  <option value="3">PHP</option>
-                  <option value="3">Python</option>
-                  <option value="3">Ruby on Rails</option>
+                  <option value="JS">JavaScript</option>
+                  <option value="Java">Java</option>
+                  <option value="PHP">PHP</option>
+                  <option value="Python">Python</option>
+                  <option value="Rails">Ruby on Rails</option>
                 </select>
               </div>
               <br/>
 
-                <button className="waves-effect waves-light btn" type="submit"> Add Developer Information</button>
+                <button className="waves-effect waves-light btn" onClick="" type="submit"> Add Developer Information</button>
               </form>
             </div>
 
