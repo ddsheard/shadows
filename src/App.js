@@ -89,6 +89,11 @@ class App extends Component {
         // this.getData();
         console.log(this.state.user);
 
+        axios.get('https://api.github.com/user?access_token=' + data.credential.accessToken).
+        then(response => {
+          this.setState({user: {...this.state.user, ...response.data}})
+
+          })
       }
       //basic
       base.authWithOAuthPopup('github', authHandler);
