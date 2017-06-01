@@ -126,7 +126,6 @@ class App extends Component {
     <Switch>
       <Route exact path="/home" render={(pickles) => this.mainLogIn()} />
       <Route path="/home" render={(pickles) => <Home mainLogIn={this.mainLogIn} /> } />
-      {/* <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}  />} /> */}
       <Route path="/developerprofile" component={DeveloperProfile} />
       <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> } />
       <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} /> } />
@@ -141,7 +140,6 @@ class App extends Component {
   forceAuthRoutes() {
     return (
     <Switch>
-      {/* <Route path="/" render={(pickles) => this.loggedOutofSite()} /> */}
       <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}  />} />
       <Redirect to="/home" />
     </Switch>
@@ -158,121 +156,22 @@ class App extends Component {
 
   render() {
     console.log(this.state.user);
-    // console.log(this.state.user);
-    // let loggedin = this.state.user ? true : null
-    // console.log(loggedin);
+
     return (
       <Router>
         <div>
           <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
-            {/* <li onClick={this.loggedOutofSite.bind(this)}>Logout</li> */}
             <li onClick={this.logout.bind(this)}>Logout</li>
-
-            {/* <li><Link to="/developerinput">DeveloperInput</Link></li>
-            <li><Link to="/developerprofile">Developer Profile</Link></li>
-            <li><Link to="/studentinput">StudentInput</Link></li>
-            <li><Link to="/studentprofile">Student Profile</Link></li>
-            <li><Link to="/linktostudents">Link to Students</Link></li>
-            <li><Link to="/addstuform.js"> Student Form</Link></li> */}
           </ul>
         </nav>
         {this.routes()}
-
-            {/* this.state.user.uid ?
-            (<Redirect to="/developerinput" />)  : (<Home clickedOnDev={this.clickedOnDev.bind(this)} />) )
-            } /> */}
-
-
-          {/* <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}  />} /> */}
-
-
-
-
-
-
-          {/* <Route path="/developerlogin" render={(pickles) => (this.state.user ? (<Redirect to="/developerinput" />):(
-          <DeveloperLogIn githubLogin={this.githubLogin} logOut={this.logOut}{...pickles} /> ))} /> */}
-          {/* <Route path="/studentlogin" render={(pickles) => <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logOut.bind(this)} {...pickles}/>} /> */}
-
         </div>
       </Router>
     );
+
   }
 }
 
-//
-// path="/..../${this.state.user.uid}"
-
 export default App;
-
-// logout Home loggedOutofSite={this.props.loggedOutofSite}
-
-////////////// New login
-
-// this.props.history.push(`/developerinput/`);
-
-
-  ///////////////
-
-  //componentDidMount(){
-    // base.auth().onAuthStateChanged(user => {
-    //   if(user){
-    //     this.setState({
-    //       user: user
-    //     })
-    //     base.syncState(`/attraction/${this.props.match.params.id}/comments`, {
-    //       context: this,
-    //       state: "comments",
-    //       asArray: true
-    //     })
-    //   } else {
-    //     this.setState({
-    //       user: {},
-    //       comments: {}
-    //     })
-    //   }
-    // })
-///////////////////////////////////////////////////////////////
-//The code below is the old login
-  //   base.auth().onAuthStateChanged(user => {
-  //     if (user) {
-  //       console.log('User is signed in', user);
-  //       base.syncState({
-  //         firebaseUser: user
-  //       })
-  //     }
-  //   });
-  // }
-  //
-  // githublogin (){
-  //   var authHandler = (error, data) => {
-  //     console.log('I am inside the auth handler', data)
-  //     // THIS IS SETTING THE STATE this.setState
-  //     this.setState({
-  //       githubUser: data.user,
-  //       token: data.credential.accessToken
-  //     })
-  //     this.getData();
-  //   }
-  //   //basic
-  //   base.authWithOAuthPopup('github', authHandler);
-  // }
-  //
-  // logOut () {
-  //   console.log('Log Out');
-  //   base.unauth()
-  // }
-  //
-  // getData() {
-  //   const user = this.state.githubUser;
-  //   console.log('inside of getData()', user);
-  //   axios.get(`https://api.github.com/user?access_token=${this.state.token}`).then(response => {
-  //     this.setState({user: response.data})})
-  // }
-  // End of the old login
-  //////////////////////////////////////////////////////////////////////////////////////////////////
-
-  {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
-  {/* <Route path="/developerlogin" component={DeveloperLogIn} /> */}
