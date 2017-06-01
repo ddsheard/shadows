@@ -4,7 +4,7 @@ import axios from 'axios';
 class DeveloperProfile extends Component {
 
   componentDidMount () {
-    axios.get('https://api.github.com/users/ddsheard').then(response => {
+    axios.get('https://api.github.com/users/').then(response => {
       console.log(response.data)
       this.setState({owner: response.data});
     })
