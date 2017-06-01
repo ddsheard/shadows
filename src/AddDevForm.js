@@ -30,7 +30,7 @@ class AddDevForm extends Component {
     // this.props.addDeveloperInput(dev);
     // this.devForm.reset();
 
-  let uid = this.state.user.uid
+  let uid = this.props.user.uid
   base.update(`user/${uid}`, {
     data: {
       availability: dev.availability,
@@ -43,19 +43,12 @@ class AddDevForm extends Component {
       tech: dev.tech
     }
   })
-  // window.location.assign("/developerprofile")
-  // browserHistory.push("/developerprofile");
-  // return (<Redirect to="/developerprofile" />)
+
   this.setState({
     submit: true
   })
 }
 
-
-  // submitAndRedirect() {
-  //   console.log(clicked);
-  //   return (<Redirect to="/developerprofile" />)
-  // }
 
   render() {
     if (this.state.submit === true) {
