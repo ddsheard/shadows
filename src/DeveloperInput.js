@@ -60,7 +60,7 @@ class DeveloperInput extends Component {
                   <span class="card-title">Card Title</span>
                   <img src={this.props.user.avatar_url} />
                   <p><span>{this.props.user.login}</span></p>
-                  <ul>
+                  <ul className=''>
                     <li>{this.props.user.email}</li>
                     <li>{this.props.user.location}</li>
                   </ul>
@@ -68,10 +68,7 @@ class DeveloperInput extends Component {
 
                   <p>Hi {this.props.user.name}, thank you for signing up to be a Shadow. Please take a moment to fillout our Developer Form. This helps us to get to know you a little better.</p>
                 </div>
-                <div class="card-action">
-                  <a href="#">This is a link</a>
-                  <a href="#">This is a link</a>
-                </div>
+
               </div>
             </div>
           </div>
@@ -85,7 +82,7 @@ class DeveloperInput extends Component {
 
         <div className="shadowDevInfo">
 
-          <AddDevForm addDeveloperInput={this.props.addDeveloperInput} theUser={this.props.theUser}/>
+          <AddDevForm addDeveloperInput={this.props.addDeveloperInput} user={this.props.user}/>
 
         </div>
       </div>
