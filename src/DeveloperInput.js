@@ -52,12 +52,40 @@ class DeveloperInput extends Component {
       <div className='container center-align'>
         <h1>Developer Page</h1>
 
-        <div className="githubInfo"></div>
+        <div className="githubInfo">
+          <div class="row">
+            <div class="col s12 m6">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">Card Title</span>
+                  <img src={this.props.user.avatar_url} />
+                  <p><span>{this.props.user.login}</span></p>
+                  <ul>
+                    <li>{this.props.user.email}</li>
+                    <li>{this.props.user.location}</li>
+                  </ul>
+
+
+                  <p>Hi {this.props.user.name}, thank you for signing up to be a Shadow. Please take a moment to fillout our Developer Form. This helps us to get to know you a little better.</p>
+                </div>
+                <div class="card-action">
+                  <a href="#">This is a link</a>
+                  <a href="#">This is a link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          {this.props.user.name}
+        </div>
           {/* <h1>{this.props.user.name}</h1> */}
 
         <div className="shadowDevInfo">
 
-          <AddDevForm addDeveloperInput={this.props.addDeveloperInput}/>
+          <AddDevForm addDeveloperInput={this.props.addDeveloperInput} theUser={this.props.theUser}/>
 
         </div>
       </div>
