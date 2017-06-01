@@ -82,7 +82,7 @@ class StudentInput extends Component{
   render() {
     return(
       <div>
-        <h1>student</h1>
+        <h1>student input</h1>
       </div>
 //       <div className='everyStudent'></div>
 //       { this.showStudent() }
