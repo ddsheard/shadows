@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
+import DeveloperProfile from './DeveloperProfile';
+import { Redirect } from 'react-router-dom';
+import base from './rebase';
 
 
 class AddDevForm extends Component {
+  constructor(){
+    super()
+    this.state = {
+      user: []
+    }
+  }
+
   submitDevForm(event) {
     event.preventDefault();
     console.log('Page is good to move on');
@@ -15,12 +25,42 @@ class AddDevForm extends Component {
       expertist: this.expertist.value,
       tech: this.tech.value,
     }
+
     console.log(dev);
-    this.props.addDeveloperInput(dev);
-    this.devForm.reset();
-  }
+    // this.props.addDeveloperInput(dev);
+    // this.devForm.reset();
+
+  let uid = this.state.user.uid
+  base.update(`user/${uid}`, {
+    data: {
+      availability: dev.availability,
+      company: dev.company,
+      url: dev.url,
+      address: dev.address,
+      objectives: dev.objectives,
+      interests: dev.interests,
+      expertist: dev.expertist,
+      tech: dev.tech
+    }
+  })
+  // window.location.assign("/developerprofile")
+  // browserHistory.push("/developerprofile");
+  // return (<Redirect to="/developerprofile" />)
+  this.setState({
+    submit: true
+  })
+}
+
+
+  // submitAndRedirect() {
+  //   console.log(clicked);
+  //   return (<Redirect to="/developerprofile" />)
+  // }
 
   render() {
+    if (this.state.submit === true) {
+     return (<Redirect to="/developerprofile" />)
+   }
     return (
 
       <div className="row">
@@ -55,7 +95,7 @@ class AddDevForm extends Component {
               </div>
               <br/>
 
-                <button className="waves-effect waves-light btn" onClick="" type="submit"> Add Developer Information</button>
+                <button className="waves-effect waves-light btn" onClick={this.submitDevForm.bind(this)} type="submit"> Add Developer Information</button>
               </form>
             </div>
 
