@@ -103,17 +103,23 @@ class App extends Component {
      }
   }
 
-  loggedOutofSite () {
-    if (){
-      return(<Redirect to="/" />)
-    }
-  }
+  // loggedOutofSite () {
+  //   if (!this.state.user ){
+  //     console.log('fuck js');
+  //     return(<Redirect to="/home" />)
+  //   }
+  // }
 
   logout() {
     console.log('clicked');
     base.unauth()
-    this.setState({user: {}})
+    this.setState({
+      user: {}
+    })
   }
+
+
+
 
 ////////////// New login
 
@@ -191,6 +197,7 @@ class App extends Component {
           <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
+            {/* <li onClick={this.loggedOutofSite.bind(this)}>Logout</li> */}
             <li onClick={this.logout.bind(this)}>Logout</li>
             {/* <li><Link to="/developerinput">DeveloperInput</Link></li>
             <li><Link to="/developerprofile">Developer Profile</Link></li>
