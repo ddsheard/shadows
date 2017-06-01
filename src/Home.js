@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DeveloperLogIn from './DeveloperLogIn';
 import StudentLogIn from './StudentLogIn';
+import base  from './rebase';
 
 
 class Home extends Component {
+
   render() {
     return (
       <div className="row">
@@ -30,6 +32,7 @@ class Home extends Component {
               </div>
             </div>
           </div>
+
       </div>
     )
   }
