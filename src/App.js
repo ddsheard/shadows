@@ -15,6 +15,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
+  Switch,
   Redirect
 } from 'react-router-dom';
 // import logo from './logo.svg';
@@ -78,6 +79,7 @@ class App extends Component {
  loggedInAs(type){
       var authHandler = (error, data) => {
         console.log('I am inside the auth handler', data)
+        console.log(error);
         // THIS IS SETTING THE STATE this.setState
         this.setState({
           user: data.user,
@@ -96,24 +98,116 @@ class App extends Component {
     mainLogIn () {
       if (this.state.type === 'developer') {
        return (<Redirect to="/developerinput" />)
-     } else if (this.state.type === 'student') {
-       return (<Redirect to="/studentinput" />)
      } else {
-       return (<Home clickedOnDev={this.clickedOnDev.bind(this)}  clickedOnStudent={this.clickedOnStudent.bind(this)}/>)
+       return (<Redirect to="/studentinput" />)
      }
   }
 
   loggedOutofSite () {
-    if (){
-      return(<Redirect to="/" />)
+    if (!this.state.user.uid ){
+      console.log('test js');
+      return(<Redirect to={ { pathname: '/' } } />)
+    } else {
+      return null
     }
   }
 
   logout() {
     console.log('clicked');
     base.unauth()
-    this.setState({user: {}})
+    this.setState({
+      user: {}
+    })
   }
+
+// a function that returns jsx
+   normalRoutes() {
+     return (
+    <Switch>
+      <Route exact path="/home" render={(pickles) => this.mainLogIn()} />
+      <Route path="/home" render={(pickles) => <Home mainLogIn={this.mainLogIn} /> } />
+      {/* <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}  />} /> */}
+      <Route path="/developerprofile" component={DeveloperProfile} />
+      <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> } />
+      <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} /> } />
+      <Route path="/studentprofile" component={StudentProfile} />
+      <Route path="/linktostudents" component={LinkToStudents} />
+      <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId} />} />
+      <Route path="/studentlogin" render={(pickles) =>
+      <StudentLogIn studentId={this.props.studentId} />} />
+    </Switch>
+  )}
+
+  forceAuthRoutes() {
+    return (
+    <Switch>
+      {/* <Route path="/" render={(pickles) => this.loggedOutofSite()} /> */}
+      <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}  />} />
+      <Redirect to="/home" />
+    </Switch>
+  )}
+
+  routes () {
+    console.log('wtf');
+    if (this.state.user.uid) {
+      return this.normalRoutes()
+    } else {
+
+      return this.forceAuthRoutes()
+  } }
+
+  render() {
+    console.log(this.state.user);
+    // console.log(this.state.user);
+    // let loggedin = this.state.user ? true : null
+    // console.log(loggedin);
+    return (
+      <Router>
+        <div>
+          <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            {/* <li onClick={this.loggedOutofSite.bind(this)}>Logout</li> */}
+            <li onClick={this.logout.bind(this)}>Logout</li>
+
+            {/* <li><Link to="/developerinput">DeveloperInput</Link></li>
+            <li><Link to="/developerprofile">Developer Profile</Link></li>
+            <li><Link to="/studentinput">StudentInput</Link></li>
+            <li><Link to="/studentprofile">Student Profile</Link></li>
+            <li><Link to="/linktostudents">Link to Students</Link></li>
+            <li><Link to="/addstuform.js"> Student Form</Link></li> */}
+          </ul>
+        </nav>
+        {this.routes()}
+
+            {/* this.state.user.uid ?
+            (<Redirect to="/developerinput" />)  : (<Home clickedOnDev={this.clickedOnDev.bind(this)} />) )
+            } /> */}
+
+
+          {/* <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}  />} /> */}
+
+
+
+
+
+
+          {/* <Route path="/developerlogin" render={(pickles) => (this.state.user ? (<Redirect to="/developerinput" />):(
+          <DeveloperLogIn githubLogin={this.githubLogin} logOut={this.logOut}{...pickles} /> ))} /> */}
+          {/* <Route path="/studentlogin" render={(pickles) => <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logOut.bind(this)} {...pickles}/>} /> */}
+
+        </div>
+      </Router>
+    );
+  }
+}
+
+//
+// path="/..../${this.state.user.uid}"
+
+export default App;
+
+// logout Home loggedOutofSite={this.props.loggedOutofSite}
 
 ////////////// New login
 
@@ -180,57 +274,5 @@ class App extends Component {
   // End of the old login
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
-  render() {
-    console.log(this.state.user);
-    // console.log(this.state.user);
-    // let loggedin = this.state.user ? true : null
-    // console.log(loggedin);
-    return (
-      <Router>
-        <div>
-          <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li onClick={this.logout.bind(this)}>Logout</li>
-            {/* <li><Link to="/developerinput">DeveloperInput</Link></li>
-            <li><Link to="/developerprofile">Developer Profile</Link></li>
-            <li><Link to="/studentinput">StudentInput</Link></li>
-            <li><Link to="/studentprofile">Student Profile</Link></li>
-            <li><Link to="/linktostudents">Link to Students</Link></li>
-            <li><Link to="/addstuform.js"> Student Form</Link></li> */}
-          </ul>
-        </nav>
-
-          <Route exact path="/" render={(pickles) => this.mainLogIn()} />
-
-
-            {/* this.state.user.uid ?
-            (<Redirect to="/developerinput" />)  : (<Home clickedOnDev={this.clickedOnDev.bind(this)} />) )
-            } /> */}
-
-
-          {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
-          <Route path="/developerprofile" component={DeveloperProfile} />
-          <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} /> } />
-          <Route path="/studentinput" render={(pickles) =>
-          <StudentInput addStudentInput={this.addStudentInput} /> } />
-          <Route path="/studentprofile" component={StudentProfile} />
-          <Route path="/linktostudents" component={LinkToStudents} />
-          {/* <Route path="/developerlogin" component={DeveloperLogIn} /> */}
-          <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId} />} />
-
-          <Route path="/studentlogin" render={(pickles) =>
-          <StudentLogIn studentId={this.props.studentId} />} />
-          {/* <Route path="/developerlogin" render={(pickles) => (this.state.user ? (<Redirect to="/developerinput" />):(
-          <DeveloperLogIn githubLogin={this.githubLogin} logOut={this.logOut}{...pickles} /> ))} /> */}
-          {/* <Route path="/studentlogin" render={(pickles) => <StudentLogIn githublogin={this.githublogin.bind(this)} user={this.state.user} logout={this.logOut.bind(this)} {...pickles}/>} /> */}
-        </div>
-      </Router>
-    );
-  }
-}
-
-//
-// path="/..../${this.state.user.uid}"
-
-export default App;
+  {/* <Route path="/developerinput" render={(pickles) => (loggedin ? <DeveloperInput logOut={this.logOut} /> : <Err />)} /> */}
+  {/* <Route path="/developerlogin" component={DeveloperLogIn} /> */}
