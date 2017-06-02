@@ -37,6 +37,18 @@ class App extends Component {
 
   }
 
+  componentDidMount() {
+  let uid = this.props.user.uid
+  base.fetch(`user/${uid}`, {
+    context: this,
+    asArray: false,
+    then(data){
+      console.log(data);
+      this.setState({user: data})
+    }
+  });
+}
+
 
   // addDeveloperInput(dev) {
   //   //update our devs state
@@ -85,6 +97,7 @@ class App extends Component {
           user: data.user,
           token: data.credential.accessToken,
           type: type
+          //notNew: data.user
         })
         // this.getData();
         console.log(this.state.user);
@@ -92,8 +105,8 @@ class App extends Component {
         axios.get('https://api.github.com/user?access_token=' + data.credential.accessToken).
         then(response => {
           this.setState({user: {...this.state.user, ...response.data}})
+        })
 
-          })
       }
       //basic
       base.authWithOAuthPopup('github', authHandler);
@@ -145,8 +158,7 @@ class App extends Component {
 
       <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId} />} />
 
-      <Route path="/studentlogin" render={(pickles) =>
-      <StudentLogIn studentId={this.props.studentId} />} />
+      <Route path="/studentlogin" render={(pickles) => <StudentLogIn studentId={this.props.studentId} />} />
     </Switch>
   )}
 
