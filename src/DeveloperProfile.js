@@ -1,19 +1,43 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import base from './rebase';
+// import axios from 'axios';
 
 class DeveloperProfile extends Component {
 
-  componentDidMount () {
-    axios.get('https://api.github.com/users/').then(response => {
-      console.log(response.data)
-      this.setState({owner: response.data});
-    })
-  }
+  // componentDidMount () {
+  //   axios.get('https://api.github.com/users/').then(response => {
+  //     console.log(response.data)
+  //     this.setState({owner: response.data});
+  //   })
+  // }
+
+  // let uid = this.props.user.uid
+  getDeveloperData(){
+  base.fetch(`user/`, {
+    context: this,
+    asArray: false,
+    then(data){
+      console.log(data);
+      this.setState({user: [data]})
+    }
+  });
+}
+
+showDeveloperData() {
+
+}
+
+
 
   render() {
     return (
       <div className="container">
-        <div className="notification"><p className="circle"></p><p className="noTop">Hi John, you have a New Shadow. </p></div>
+        <br/><br/><br/>
+        <div className="notification">
+          <img className="circle" src={this.props.user.avatar_url} />
+          <p className="noTop">Hi {this.props.user.name}, you have a New Shadow. </p>
+        </div>
           <div className="row">
             <div className="col m7 s12">
               <div className="card">
@@ -48,7 +72,7 @@ class DeveloperProfile extends Component {
                 </div>
 
                 <div className="card-action">
-                  <a href="#">This is a link</a>
+                  <Link to="/linkToStudents">Link to Students</Link>
                 </div>
               </div>
             </div>
