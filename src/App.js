@@ -130,13 +130,20 @@ class App extends Component {
      return (
     <Switch>
       <Route exact path="/home" render={(pickles) => this.mainLogIn()} />
+
       <Route path="/home" render={(pickles) => <Home mainLogIn={this.mainLogIn} /> } />
       <Route path="/developerprofile" component={DeveloperProfile} />
+
       <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} user={this.state.user} /> } />
-      <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} /> } />
+
+      <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user} /> } />
+
       <Route path="/studentprofile" component={StudentProfile} />
+
       <Route path="/linktostudents" component={LinkToStudents} />
+
       <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId} />} />
+
       <Route path="/studentlogin" render={(pickles) =>
       <StudentLogIn studentId={this.props.studentId} />} />
     </Switch>
