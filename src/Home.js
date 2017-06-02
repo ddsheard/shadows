@@ -9,8 +9,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="row">
-          <div className="col s12 m7">
+      <div className="container center-align">
+        <br/><br/><br/>
+      <div className="row center-align">
+          <div className="col m12">
             <div className="card">
               <div className="card-image">
                 {/* <img src="images/sample-1.jpg"/> */}
@@ -32,7 +34,7 @@ class Home extends Component {
               </div>
             </div>
           </div>
-
+        </div>
       </div>
     )
   }
