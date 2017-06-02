@@ -55,6 +55,17 @@ a {
    left: 5rem;
  }
 
+ .githubPic {
+   width: 30%;
+   border-radius: 50%;
+   border: 5px solid #484D6D;
+ }
+
+ .login {
+   font-weight: 600;
+   font-size:  2.5rem;
+ }
+
  /*.image-circle {
   border-radius: 50%;
   width: 50%;
