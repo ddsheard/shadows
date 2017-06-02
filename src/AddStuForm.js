@@ -19,7 +19,7 @@ class AddStuForm extends Component {
     const stu = {
       availability: this.availability.value,
       objectives: this.objectives.value,
-      experience: this.expertise.value,
+      expertise: this.expertise.value,
       goals: this.goals.value,
       tech: this.tech.value,
     }
@@ -27,14 +27,14 @@ class AddStuForm extends Component {
     console.log(stu);
     // this.props.addStudentInput(stu);
     // this.stuForm.reset();
-  }
+
 
   let uid = this.props.user.uid
-  base.update(`user/${uid}`), {
+  base.update(`user/${uid}`, {
     data: {
       availability: stu.availability,
       objectives: stu.objectives,
-      experience: stu.expertise,
+      expertise: stu.expertise,
       goals: stu.goals,
       tech: stu.tech
     }
@@ -43,7 +43,7 @@ class AddStuForm extends Component {
   this.setState({
     submit: true
   })
-
+}
   render() {
     if (this.state.submit === true) {
       return (<Redirect to='/studentprofile' />)
