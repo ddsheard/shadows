@@ -29,7 +29,8 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      type: ''
+      type: '',
+      // form: true
     }
     //Input fields for Dev and student -firebase
     // this.addDeveloperInput = this.addDeveloperInput.bind(this);
@@ -37,17 +38,26 @@ class App extends Component {
 
   }
 
-  componentDidMount() {
-  let uid = this.props.user.uid
-  base.fetch(`user/${uid}`, {
-    context: this,
-    asArray: false,
-    then(data){
-      console.log(data);
-      this.setState({user: data})
-    }
-  });
-}
+  // componentDidMount() {
+  // let uid = this.props.user.uid
+  // base.fetch(`user/${uid}`, {
+  //   context: this,
+  //   asArray: false,
+  //   then(data){
+  //     console.log(data);
+  //     this.setState({user: data})
+  //   }
+  // });
+
+// componentDidMount() {
+//   // base.syncState(`user`, {
+//   //   context: this,
+//   //   state: 'uid',
+//   //   asArray: true
+//   // });
+// }
+
+
 
 
   // addDeveloperInput(dev) {
@@ -96,9 +106,10 @@ class App extends Component {
         this.setState({
           user: data.user,
           token: data.credential.accessToken,
-          type: type
-          //notNew: data.user
+          type: type,
+          form: {}
         })
+
         // this.getData();
         console.log(this.state.user);
 
@@ -106,8 +117,22 @@ class App extends Component {
         then(response => {
           this.setState({user: {...this.state.user, ...response.data}})
         })
-
       }
+
+      // checkingIfUserHasForm() {
+      //   if  (this.state.form === null) {
+      //     return (<Redirect to=‘studentProfile’ />)
+      //   } else {
+      //     return (<Redirect to=‘studentInput’ />)
+      //   }
+      //
+      //   if (this.state.form === null) {
+      //     return (<Redirect to=‘developerProfile’ />)
+      //   } else {
+      //     return (<Redirect to=‘developerInput’ />)
+      //   }
+      // }
+
       //basic
       base.authWithOAuthPopup('github', authHandler);
       // this.props.history.push(`/developerinput/`);
@@ -138,6 +163,7 @@ class App extends Component {
     })
   }
 
+
 // a function that returns jsx
    normalRoutes() {
      return (
@@ -152,7 +178,7 @@ class App extends Component {
 
       <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user} /> } />
 
-      <Route path="/studentprofile" component={StudentProfile} />
+      <Route path="/studentprofile" render={(pickles) => <StudentProfile user={this.state.user} /> } />
 
       <Route path="/linktostudents" render={(pickles) => <LinkToStudents user={this.state.user} /> } />
 
@@ -178,6 +204,21 @@ class App extends Component {
 
       return this.forceAuthRoutes()
   } }
+
+
+  //MESSAGING
+  // const messaging = firebase.messaging();
+  // messaging.requestPermission()
+  // .then(function() {
+  //   console.log('will this work');
+  //   return messaging.getToken();
+  // })
+  // .then(function(token) {
+  //   console.log(token);
+  // })
+  // .catch(errorFound(err) {
+  //   console.log('Error Occured.');
+  // })
 
   render() {
     console.log(this.state.user);
