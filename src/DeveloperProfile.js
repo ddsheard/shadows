@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import base from './rebase';
+import firebase from 'firebase';
 // import axios from 'axios';
 
 class DeveloperProfile extends Component {
   constructor() {
     super();
+    this.updateMessage = this.updateMessage.bind(this)
+    this.submitMessage = this.submitMessage.bind(this)
     this.state = {
       user: {},
-      data: {}
+      data: {},
+      message: '',
+      messages: []
     }
   }
 
@@ -33,6 +38,39 @@ componentDidMount() {
       this.setState({user: data})
     }
   });
+
+  console.log('componentDidMount')
+  firebase.database().ref('messages/').on('value',(snapshot) => {
+
+    const currentMessages = snapshot.val()
+
+    if(currentMessages != null){
+      this.setState({
+        messages: currentMessages
+      })
+    }
+  })
+}
+
+updateMessage(event) {
+  console.log('updateMessage:' + event.target.value)
+  this.setState({
+    message: event.target.value
+  })
+}
+
+submitMessage(event){
+  console.log('submitMessage:' + this.state.message)
+  const nextMessage = {
+    id: this.state.messages.length,
+    text: this.state.message
+  }
+  firebase.database().ref('messages/' +nextMessage.id).set(nextMessage)
+  // var list = Object.assign([], this.state.messages)
+  // list.push(nextMessage)
+  // this.setState({
+  //   messages: list
+  // })
 }
 
 
@@ -61,6 +99,11 @@ componentDidMount() {
 
 
   render() {
+    const currentMessage = this.state.messages.map((message, i) => {
+      return (
+        <li key={message.id}>{message.text}</li>
+      )
+    })
     console.log(this.props.user, this.state.user)
     return (
       <div className="container">
@@ -74,9 +117,19 @@ componentDidMount() {
         <div className="row">
           <div className="col m12 s12">
             <div className="card">
+              <div className="container">
+                <ol>
+                  {currentMessage}
+                </ol>
+                <hr/>
+
               <span className="card-title">Share with others</span>
-                <input placeholder="Share with Students" type="text"/>
-                <button className="waves-effect waves-light btn">Make a Post</button>
+                <input onChange={this.updateMessage} type="text" placeholder="Message Students" />
+                <br/>
+                <button onClick={this.submitMessage} className="waves-effect waves-light btn">Submit Message</button>
+
+              </div>
+              <br/>
             </div>
           </div>
         </div>
@@ -112,11 +165,11 @@ componentDidMount() {
             <div className="col m5 s12">
               <div className="card">
                 <div className="card-image">
-                  <span className="card-title">Link to Students</span>
+                  {/* <span className="card-title">Link to Students</span> */}
                 </div>
 
                 <div className="card-content">
-                  <ul class="collection">
+                  <ul className="collection">
                      <li className="collection-item avatar">
                        <span className="card-title">Link to Students</span>
                        <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
