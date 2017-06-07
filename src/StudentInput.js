@@ -18,14 +18,14 @@ class StudentInput extends Component{
 
         <div className='githubInfo'>
           <div className='row'>
-            <div className='col s12 m6'>
+            <div className='col s6 m6'>
               <div className='card blue-grey darken-1'>
                 <div className='card-content white-text'>
-                  <span className='card-title'>Card Title</span>
-                  <img src={this.props.user.avatar_url} />
-                  <p><span>{this.props.user.login}</span></p>
-                  <ul className=''>
-                    <li>{this.props.user.email}</li>
+                  {/* <span className='card-title'>Card Title</span> */}
+                  <img className='githubPic' src={this.props.user.avatar_url} />
+                  <p><span className='login'>{this.props.user.login}</span></p>
+                  <ul className='emailLocation'>
+                    <li><a href='mailto:{this.props.user.email}'></a>{this.props.user.email}</li>
                     <li>{this.props.user.location}</li>
                   </ul>
 
@@ -34,7 +34,6 @@ class StudentInput extends Component{
               </div>
             </div>
           </div>
-          {this.props.user.name}
         </div>
         <div className='shadowStuInfo'>
           <AddStuForm addStudentInput={this.props.addStudentInput} user={this.props.user} />
