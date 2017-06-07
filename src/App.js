@@ -30,7 +30,7 @@ class App extends Component {
     this.state = {
       user: {},
       type: '',
-      // form: true
+      form: true
     }
     //Input fields for Dev and student -firebase
     // this.addDeveloperInput = this.addDeveloperInput.bind(this);
@@ -99,43 +99,30 @@ class App extends Component {
   }
 
  loggedInAs(type){
-      var authHandler = (error, data) => {
-        console.log('I am inside the auth handler', data)
-        console.log(error);
-        // THIS IS SETTING THE STATE this.setState
-        this.setState({
-          user: data.user,
-          token: data.credential.accessToken,
-          type: type,
-          form: {}
-        })
+    var authHandler = (error, data) => {
+      console.log('I am inside the auth handler', data)
+      console.log(error);
+      // THIS IS SETTING THE STATE this.setState
+      this.setState({
+        user: data.user,
+        token: data.credential.accessToken,
+        type: type,
+        form: {}
+      })
 
-        // this.getData();
-        console.log(this.state.user);
+      // this.getData();
+      console.log(this.state.user);
 
-        axios.get('https://api.github.com/user?access_token=' + data.credential.accessToken).
-        then(response => {
-          this.setState({user: {...this.state.user, ...response.data}})
-        })
-      }
+      axios.get('https://api.github.com/user?access_token=' + data.credential.accessToken).
+      then(response => {
+        this.setState({user: {...this.state.user, ...response.data}})
+      })
+    }
+    console.log(this.state.form);
 
-      // checkingIfUserHasForm() {
-      //   if  (this.state.form === null) {
-      //     return (<Redirect to=‘studentProfile’ />)
-      //   } else {
-      //     return (<Redirect to=‘studentInput’ />)
-      //   }
-      //
-      //   if (this.state.form === null) {
-      //     return (<Redirect to=‘developerProfile’ />)
-      //   } else {
-      //     return (<Redirect to=‘developerInput’ />)
-      //   }
-      // }
-
-      //basic
-      base.authWithOAuthPopup('github', authHandler);
-      // this.props.history.push(`/developerinput/`);
+    //basic
+    base.authWithOAuthPopup('github', authHandler);
+    // this.props.history.push(`/developerinput/`);
     }
 
     mainLogIn () {
@@ -163,6 +150,20 @@ class App extends Component {
     })
   }
 
+  checkingIfUserHasForm() {
+    console.log(this.state.form);
+    // if (this.state.form) {
+    //   return (<Redirect to=‘studentProfile’ />)
+    // } else {
+    //   return (<Redirect to=‘studentInput’ />)
+    // }
+
+    // if (this.state.form) {
+    //   return (<Redirect to=‘developerProfile’ />)
+    // } else {
+    //   return (<Redirect to=‘developerInput’ />)
+    // }
+  }
 
 // a function that returns jsx
    normalRoutes() {
@@ -201,7 +202,6 @@ class App extends Component {
     if (this.state.user.uid) {
       return this.normalRoutes()
     } else {
-
       return this.forceAuthRoutes()
   } }
 
