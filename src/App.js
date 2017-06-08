@@ -150,20 +150,34 @@ class App extends Component {
     })
   }
 
-  checkingIfUserHasForm() {
-    console.log(this.state.form);
-    // if (this.state.form) {
-    //   return (<Redirect to=‘studentProfile’ />)
-    // } else {
-    //   return (<Redirect to=‘studentInput’ />)
-    // }
 
-    // if (this.state.form) {
-    //   return (<Redirect to=‘developerProfile’ />)
-    // } else {
-    //   return (<Redirect to=‘developerInput’ />)
-    // }
-  }
+  receiveUserInformation() {
+  let uid = this.state.user.uid
+  base.fetch(`user/${uid}`, {
+    context: this,
+    asArray: false
+    .then(response => {
+      this.setState({user: {...this.state.user, ...response.data}})
+    })
+  })
+}
+
+  // checkingIfStudentUserHasForm() {
+  //   console.log(this.state.form);
+  //   if (this.state.form) {
+  //     return (<Redirect to='studentProfile' />)
+  //   } else {
+  //     return (<Redirect to='studentInput' />)
+  //   }
+  // }
+  //
+  // checkingIfDevUserHasForm() {
+  //   if (this.state.form) {
+  //     return (<Redirect to='developerProfile' />)
+  //   } else {
+  //     return (<Redirect to='developerInput' />)
+  //   }
+  // }
 
 // a function that returns jsx
    normalRoutes() {
@@ -177,7 +191,7 @@ class App extends Component {
 
       <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} user={this.state.user} /> } />
 
-      <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user} /> } />
+      <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user}  receiveUserInformation={this.receiveUserInformation} /> } />
 
       <Route path="/studentprofile" render={(pickles) => <StudentProfile user={this.state.user} /> } />
 
