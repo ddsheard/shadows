@@ -36,7 +36,7 @@ class StudentInput extends Component{
           </div>
         </div>
         <div className='shadowStuInfo'>
-          <AddStuForm addStudentInput={this.props.addStudentInput} user={this.props.user} />
+          <AddStuForm addStudentInput={this.props.addStudentInput} user={this.props.user}  receiveUserInformation={this.props.receiveUserInformation}/>
 
         </div>
       </div>

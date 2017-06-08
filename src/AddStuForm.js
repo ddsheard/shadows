@@ -37,16 +37,21 @@ class AddStuForm extends Component {
       goals: stu.goals,
       tech: stu.tech
     }
+
   })
 
   this.setState({
     submit: true
   })
+
 }
   render() {
     if (this.state.submit === true) {
       return (<Redirect to='/studentprofile' />)
     }
+
+    // this.receiveUserInformation();
+
     return(
         <div className="row">
           <div className="col s12 m12">
