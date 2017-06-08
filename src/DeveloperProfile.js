@@ -74,29 +74,6 @@ submitMessage(event){
 }
 
 
-//   showDeveloperData() {
-//     let user = this.props.user.uid
-//     console.log(user);
-// }
-
-
-// allThatInfo(){
-//   let user = this.state.user
-//   console.log(user)
-//   return this.state.user.map( (user, index) => {
-//     return(
-//       <div key={index}>
-//         <p>hello {user.age}</p>
-//         <p>{user.firstName}</p>
-//         <p>{user.hobby}</p>
-//         <p>{user.restaraunt}</p>
-//         <p>{user.displayName}</p>
-//         <p>{user.genre}</p>
-//       </div>
-//     )
-//   } )
-//  }
-
 
   render() {
     const currentMessage = this.state.messages.map((message, i) => {
