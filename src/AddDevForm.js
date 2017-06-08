@@ -76,7 +76,7 @@ class AddDevForm extends Component {
                 <textarea ref={(input) => this.expertist = input} type="text" className="materialize-textarea" placeholder="Developer Expertist"></textarea>
                 </div>
                 <div>
-                <label>Teck Stack</label>
+                <label>Tech Stack</label>
                 <select ref={(input) => this.tech = input} className="browser-default">
                   <option value="" disabled selected>Choose your option</option>
                   <option value="JS">JavaScript</option>
