@@ -63,23 +63,43 @@ submitMessage(event){
   console.log('submitMessage:' + this.state.message)
   const nextMessage = {
     id: this.state.messages.length,
-    text: this.state.message
+    text: this.state.message,
+    username: this.props.user.name,
+    pic: this.props.user.avatar_url,
+    key: this.props.user.uid + this.props.user.uid,
+    secKey: this.props.user.uid + this.props.user.uid
   }
+console.log(nextMessage.key);
+console.log(nextMessage.secKey);
+  // this.message.value = ''
+  // this.message.placeholder = ''
+  // event.preventDefault()
+
   firebase.database().ref('messages/' +nextMessage.id).set(nextMessage)
-  // var list = Object.assign([], this.state.messages)
-  // list.push(nextMessage)
-  // this.setState({
-  //   messages: list
-  // })
+//   var list = Object.assign([], this.state.messages)
+//   list.push(nextMessage)
+//   this.setState({
+//     messages: list
+//   })
 }
 
 
 
   render() {
+    const specialKey = this.props.user.uid + this.props.user.uid
+
     const currentMessage = this.state.messages.map((message, i) => {
-      return (
-        <li key={message.id}>{message.text}</li>
-      )
+      if(message.key === specialKey || message.secKey === specialKey) {
+        return (
+          <li key={message.id}>
+            <img width='32' className='circle' alt='avatar' src={message.pic} /> &nbsp;
+            <strong className="strongChat">{message.text}</strong>
+            <br/><em className="emChat">{message.username}</em>
+          </li>
+        )
+      } else {
+        return null
+      }
     })
     console.log(this.props.user, this.state.user)
     return (
@@ -95,15 +115,15 @@ submitMessage(event){
           <div className="col m12 s12">
             <div className="card">
               <div className="container">
-                <ol>
+                <ul>
                   {currentMessage}
-                </ol>
+                </ul>
                 <hr/>
 
               <span className="card-title">Share with others</span>
-                <input onChange={this.updateMessage} type="text" placeholder="Message Students" />
+                <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message Students" />
                 <br/>
-                <button onClick={this.submitMessage} className="waves-effect waves-light btn">Submit Message</button>
+                <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Submit Message</button>
 
               </div>
               <br/>

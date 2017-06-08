@@ -80,6 +80,19 @@ a {
    left: 40px;
  }
 
+ .emChat {
+   font-size: 12px;
+   position: relative;
+   top: -20px;
+   left: 8%;
+ }
+
+ .strongChat {
+   position:relative;
+   top: -20px;
+   left: 3.5%;
+ }
+
  /*.image-circle {
   border-radius: 50%;
   width: 50%;
