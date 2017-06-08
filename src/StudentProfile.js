@@ -90,7 +90,7 @@ class StudentProfile extends Component {
                 </ol>
                 <hr />
 
-                <span className='card-title'>Share with others??</span>
+                <span className='card-title'>Would you share with others??</span>
                 <input onChange={this.updateMessage} type='text' placeholder='Message' />
                 <br />
                 <button onClick={this.submitMessage} className='waves-effect waves-light btn'>Submit Message</button>
