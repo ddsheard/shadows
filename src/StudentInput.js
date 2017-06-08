@@ -28,7 +28,7 @@ class StudentInput extends Component{
                     <li><a href='mailto:{this.props.user.email}'></a>{this.props.user.email}</li>
                     <li>{this.props.user.location}</li>
                   </ul>
-
+                  
                   <p> {this.props.user.name} Please complete the student.</p>
                 </div>
               </div>
