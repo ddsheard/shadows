@@ -163,8 +163,8 @@ console.log(nextMessage.secKey);
 
                    <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
                    <span className="title"><strong>{this.props.user.name}</strong></span>
-                    <p className="userInfo">  Student Availability: {this.state.user.availability}</p>
-                    <p className="userInfo"> Tech Stack: {this.state.user.tech}</p>
+                    <p className="userInfo">  Student Availability: {this.props.user.availability}</p>
+                    <p className="userInfo"> Tech Stack: {this.props.user.tech}</p>
                    {/* <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a> */}
                  </li>
                </ul>
@@ -189,14 +189,14 @@ console.log(nextMessage.secKey);
               </div>
 
               <div className="card-content">
-                <p>This is a test: {this.state.user.availability}</p>
-                <p>This is a test: {this.state.user.company}</p>
-                <p>This is a test: {this.state.user.url}</p>
-                <p>This is a test: {this.state.user.address}</p>
-                <p>This is a test: {this.state.user.objectives}</p>
-                <p>This is a test: {this.state.user.interests}</p>
-                <p>This is a test: {this.state.user.expertist}</p>
-                <p>This is a test: {this.state.user.tech}</p>
+                <p>This is a test: {this.props.user.availability}</p>
+                <p>This is a test: {this.props.user.company}</p>
+                <p>This is a test: {this.props.user.url}</p>
+                <p>This is a test: {this.props.user.address}</p>
+                <p>This is a test: {this.props.user.objectives}</p>
+                <p>This is a test: {this.props.user.interests}</p>
+                <p>This is a test: {this.props.user.expertist}</p>
+                <p>This is a test: {this.props.user.tech}</p>
                 {console.log(this.state)}
               </div>
 
