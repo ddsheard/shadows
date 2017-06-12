@@ -111,6 +111,49 @@ console.log(nextMessage.secKey);
           This is a test: {this.state.user.availability}, {this.state.user.company}, {this.state.user.url}</p>
         </div>
 
+        <div className="row center-align">
+          <div className="col m4 s12">
+            <div className="card">
+              <div className="container">
+
+                <Link to="/linktostudents"><p>Shadow a Student</p></Link>
+                <p>Sriracha bespoke roof party, man bun banh mi microdosing coloring book master cleanse freegan live-edge heirloom. Subway tile meditation messenger bag.</p>
+                <button>Let's Chat</button>
+
+              </div>
+              <br/>
+            </div>
+          </div>
+
+          <div className="col m4 s12">
+            <div className="card">
+              <div className="container">
+
+                <p>text 1</p>
+                <p>Sriracha bespoke roof party, man bun banh mi microdosing coloring book master cleanse freegan live-edge heirloom. Subway tile meditation messenger bag.</p>
+                <button>Let's Chat</button>
+
+              </div>
+              <br/>
+            </div>
+          </div>
+
+          <div className="col m4 s12">
+            <div className="card">
+              <div className="container">
+
+                <p>Chat with other Shadows</p>
+                <p>Sriracha bespoke roof party, man bun banh mi microdosing coloring book master cleanse freegan live-edge heirloom. Subway tile meditation messenger bag.</p>
+                <button>Let's Chat</button>
+
+              </div>
+              <br/>
+            </div>
+          </div>
+        </div>
+
+
+
         <div className="row">
           <div className="col m12 s12">
             <div className="card">
@@ -131,59 +174,63 @@ console.log(nextMessage.secKey);
           </div>
         </div>
 
-          <div className="row">
 
-            <div className="col m7 s12">
-              <div className="card">
-                <div className="card-image">
-                  <img src="images/lemuel-butler.jpg"/>
-                  <span className="card-title">Card Title</span>
-                </div>
+        <div className="row">
 
-                <div className="card-content">
-                  <p>This is a test: {this.state.user.availability}</p>
-                  <p>This is a test: {this.state.user.company}</p>
-                  <p>This is a test: {this.state.user.url}</p>
-                  <p>This is a test: {this.state.user.address}</p>
-                  <p>This is a test: {this.state.user.objectives}</p>
-                  <p>This is a test: {this.state.user.interests}</p>
-                  <p>This is a test: {this.state.user.expertist}</p>
-                  <p>This is a test: {this.state.user.tech}</p>
-                  {console.log(this.state)}
-                </div>
+          <div className="col m7 s12">
+            <div className="card">
+              <div className="card-image">
+                <img src="images/lemuel-butler.jpg"/>
+                <span className="card-title">Card Title</span>
+              </div>
 
-                <div className="card-action">
-                  <a href="#">This is a link</a>
-                </div>
+              <div className="card-content">
+                <p>This is a test: {this.state.user.availability}</p>
+                <p>This is a test: {this.state.user.company}</p>
+                <p>This is a test: {this.state.user.url}</p>
+                <p>This is a test: {this.state.user.address}</p>
+                <p>This is a test: {this.state.user.objectives}</p>
+                <p>This is a test: {this.state.user.interests}</p>
+                <p>This is a test: {this.state.user.expertist}</p>
+                <p>This is a test: {this.state.user.tech}</p>
+                {console.log(this.state)}
+              </div>
+
+              <div className="card-action">
+                <a href="#">This is a link</a>
               </div>
             </div>
+          </div>
 
 
-            <div className="col m5 s12">
-              <div className="card">
-                <div className="card-image">
-                  {/* <span className="card-title">Link to Students</span> */}
-                </div>
+          <div className="col m5 s12">
+            <div className="card">
+              <div className="card-image">
+                {/* <span className="card-title">Link to Students</span> */}
+              </div>
 
-                <div className="card-content">
-                  <ul className="collection">
-                     <li className="collection-item avatar">
-                       <span className="card-title">Link to Students</span>
-                       <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
-                       <span className="title"><strong>{this.props.user.name}</strong></span>
-                        <p className="userInfo">  Student Availability: {this.state.user.availability}</p>
-                        <p className="userInfo"> Tech Stack: {this.state.user.tech}</p>
-                       {/* <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a> */}
-                     </li>
-                   </ul>
-                </div>
+              <div className="card-content">
+                <ul className="collection">
+                   <li className="collection-item avatar">
+                     <span className="card-title">Link to Students</span>
+                     <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
+                     <span className="title"><strong>{this.props.user.name}</strong></span>
+                      <p className="userInfo">  Student Availability: {this.state.user.availability}</p>
+                      <p className="userInfo"> Tech Stack: {this.state.user.tech}</p>
+                     {/* <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a> */}
+                   </li>
+                 </ul>
+              </div>
 
-                <div className="card-action">
-                  <Link to="/linkToStudents">Link to Students</Link>
-                </div>
+              <div className="card-action">
+                <Link to="/linkToStudents">Link to Students</Link>
+                <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Chat</button>
               </div>
             </div>
-        </div>
+          </div>
+      </div>
+
+
 
       </div>
     )
