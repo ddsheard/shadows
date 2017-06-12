@@ -115,18 +115,24 @@ class App extends Component {
 
       axios.get('https://api.github.com/user?access_token=' + data.credential.accessToken).
       then(response => {
+        console.log('axios response', response);
         this.setState({user: {...this.state.user, ...response.data}})
       })
 
+      console.log(this.state.user);
+
       // receiveUserInformation() {
-        let uid = this.state.user.uid
-        base.fetch(`user/${uid}`, {
-          context: this,
-          asArray: false}).then(response => {
-            this.setState({
-              user: {...this.state.user, ...response.data}})
-        })
-        console.log('hello');
+      let uid = this.state.user.uid
+      console.log(uid);
+      base.fetch(`user/${uid}`, {
+        context: this,
+        asArray: false}).then(response => {
+          console.log('firebase response', response);
+
+          this.setState({
+            user: {...this.state.user, ...response}})
+      })
+      console.log('hello');
       // }
     }
     console.log(this.state.form);
@@ -216,7 +222,8 @@ class App extends Component {
       return this.normalRoutes()
     } else {
       return this.forceAuthRoutes()
-  } }
+    }
+  }
 
   //Testing the Route
   // <Route exact path="/" render={() => (loggedIn ? ( <Redirect to="/dashboard"/> ) : ( <PublicHomePage/> )) } />
