@@ -219,6 +219,8 @@ class App extends Component {
       return this.forceAuthRoutes()
   } }
 
+  //Testing the Route
+  // <Route exact path="/" render={() => (loggedIn ? ( <Redirect to="/dashboard"/> ) : ( <PublicHomePage/> )) } />
 
   //MESSAGING
   // const messaging = firebase.messaging();
