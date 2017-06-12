@@ -117,6 +117,17 @@ class App extends Component {
       then(response => {
         this.setState({user: {...this.state.user, ...response.data}})
       })
+
+      // receiveUserInformation() {
+        let uid = this.state.user.uid
+        base.fetch(`user/${uid}`, {
+          context: this,
+          asArray: false}).then(response => {
+            this.setState({
+              user: {...this.state.user, ...response.data}})
+        })
+        console.log('hello');
+      // }
     }
     console.log(this.state.form);
 
@@ -149,18 +160,6 @@ class App extends Component {
       user: {}
     })
   }
-
-
-  receiveUserInformation() {
-  let uid = this.state.user.uid
-  base.fetch(`user/${uid}`, {
-    context: this,
-    asArray: false
-    .then(response => {
-      this.setState({user: {...this.state.user, ...response.data}})
-    })
-  })
-}
 
   // checkingIfStudentUserHasForm() {
   //   console.log(this.state.form);
