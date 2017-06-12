@@ -126,7 +126,6 @@ class StudentProfile extends Component {
                 <p>This is a test: {this.props.user.expertise}</p>
                 <p>This is a test: {this.props.user.goals}</p>
                 <p>This is a test: {this.props.user.tech}</p>
-                {/* <p>This is a test: {this.props.user.}</p> */}
                 {console.log(this.props)}
               </div>
 
