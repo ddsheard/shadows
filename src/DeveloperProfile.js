@@ -29,17 +29,17 @@ class DeveloperProfile extends Component {
 
 
 componentDidMount() {
-  let uid = this.props.user.uid
-  base.fetch(`user/${uid}`, {
-    context: this,
-    asArray: false,
-    then(data){
-      console.log(data);
-      this.setState({user: data})
-    }
-  });
-
-  console.log('componentDidMount')
+  // let uid = this.props.user.uid
+  // base.fetch(`user/${uid}`, {
+  //   context: this,
+  //   asArray: false,
+  //   then(data){
+  //     console.log(data);
+  //     this.setState({user: data})
+  //   }
+  // });
+  //
+  // console.log('componentDidMount')
   firebase.database().ref('messages/').on('value',(snapshot) => {
 
     const currentMessages = snapshot.val()
@@ -152,25 +152,29 @@ console.log(nextMessage.secKey);
           </div>
         </div>
 
-
-
+<span className="card-title">Chat with Students</span>
         <div className="row">
-          <div className="col m12 s12">
-            <div className="card">
-              <div className="container">
-                <ul>
-                  {currentMessage}
-                </ul>
-                <hr/>
 
-              <span className="card-title">Share with others</span>
-                <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message Students" />
-                <br/>
-                <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Submit Message</button>
+          <div className="col m4 s12">
 
-              </div>
-              <br/>
+            <div className="card-content">
+              <ul className="collection">
+                 <li className="collection-item avatar">
+
+                   <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
+                   <span className="title"><strong>{this.props.user.name}</strong></span>
+                    <p className="userInfo">  Student Availability: {this.state.user.availability}</p>
+                    <p className="userInfo"> Tech Stack: {this.state.user.tech}</p>
+                   {/* <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a> */}
+                 </li>
+               </ul>
             </div>
+
+            <div className="card-action">
+              {/* <Link to="/linkToStudents">Link to Students</Link> */}
+              <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Chat</button>
+            </div>
+
           </div>
         </div>
 
