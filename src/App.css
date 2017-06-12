@@ -77,7 +77,7 @@ a {
 
  .userInfo, .title{
    position: relative;
-   left: 40px;
+   left: 0px;
  }
 
  .emChat {
