@@ -14,7 +14,7 @@ class StudentInput extends Component{
   render() {
     return(
       <div className='container center-align'>
-        <h1>student input again</h1>
+        <h1>Student Profile Information</h1>
 
         <div className='githubInfo'>
           <div className='row'>
@@ -23,18 +23,20 @@ class StudentInput extends Component{
                 <div className='card-content white-text'>
                   {/* <span className='card-title'>Card Title</span> */}
                   <img className='githubPic' src={this.props.user.avatar_url} />
-                  <p><span className='login'>{this.props.user.login}</span></p>
+                  <br/>
+                  <span className='login'>{this.props.user.login}</span>
                   <ul className='emailLocation'>
                     <li><a href='mailto:{this.props.user.email}'></a>{this.props.user.email}</li>
                     <li>{this.props.user.location}</li>
                   </ul>
-                  
+
                   <p> {this.props.user.name} Please complete the student.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className='shadowStuInfo'>
           <AddStuForm addStudentInput={this.props.addStudentInput} user={this.props.user}  receiveUserInformation={this.props.receiveUserInformation}/>
 
