@@ -208,7 +208,7 @@ class App extends Component {
 
       <Route path="/home" render={(pickles) => <Home mainLogIn={this.mainLogIn} /> } />
 
-      <Route path="/developerprofile" render={(pickles) => <DeveloperProfile user={this.state.user} /> } />
+      <Route path="/developerprofile" render={(pickles) => <DeveloperProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user} /> } />
 
       <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} user={this.state.user} /> } />
 
