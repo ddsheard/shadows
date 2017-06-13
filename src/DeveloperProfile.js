@@ -23,6 +23,7 @@ class DeveloperProfile extends Component {
 //if (students.push())
 
 componentDidMount() {
+  this.props.receiveUserInformation()
   base.fetch(`students`, {
   context: this,
   asArray: false}).then(response => {
