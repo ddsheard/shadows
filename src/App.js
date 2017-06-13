@@ -30,14 +30,15 @@ class App extends Component {
     this.state = {
       user: {},
       type: '',
-      form: true
+      form: true,
+      // everyone: []
     }
     //Input fields for Dev and student -firebase
     // this.addDeveloperInput = this.addDeveloperInput.bind(this);
     // this.addStudentInput = this.addStudentInput.bind(this);
 
   }
-
+  // FETCH ATTEMPTS
   // componentDidMount() {
   // let uid = this.props.user.uid
   // base.fetch(`user/${uid}`, {
@@ -49,13 +50,13 @@ class App extends Component {
   //   }
   // });
 
-// componentDidMount() {
-//   // base.syncState(`user`, {
-//   //   context: this,
-//   //   state: 'uid',
-//   //   asArray: true
-//   // });
-// }
+  // componentDidMount() {
+  //   // base.syncState(`user`, {
+  //   //   context: this,
+  //   //   state: 'uid',
+  //   //   asArray: true
+  //   // });
+  // }
 
 
 
@@ -118,22 +119,7 @@ class App extends Component {
         console.log('axios response', response);
         this.setState({user: {...this.state.user, ...response.data}})
       })
-
       console.log(this.state.user);
-
-      // receiveUserInformation() {
-      let uid = this.state.user.uid
-      console.log(uid);
-      base.fetch(`user/${uid}`, {
-        context: this,
-        asArray: false}).then(response => {
-          console.log('firebase response', response);
-
-          this.setState({
-            user: {...this.state.user, ...response}})
-      })
-      console.log('hello');
-      // }
     }
     console.log(this.state.form);
 
@@ -167,6 +153,36 @@ class App extends Component {
     })
   }
 
+  // convertObjectToArray() {
+  //   let arr = Object.keys({this.state.user, response.data})
+  //   console.log(arr);
+  //   this.setState({
+  //     everyone:{}
+  //   })
+  // }
+
+  // convertObjectToArray() {
+  //   let arr = Object.keys(everyone)
+  //   // console.log(arr)
+  //   this.setState({
+  //     everyone:{this.state, response.data}
+  //   })
+  // }
+
+  //Getting information from firebase & setting the state for github and fb
+  receiveUserInformation() {
+  let uid = this.state.user.uid
+  console.log(uid);
+  base.fetch(`user/${uid}`, {
+    context: this,
+    asArray: false}).then(response => {
+      console.log('firebase response', response);
+      this.setState({
+        user: {...this.state.user, ...response}})
+  })
+  console.log('hello');
+  }
+
   // checkingIfStudentUserHasForm() {
   //   console.log(this.state.form);
   //   if (this.state.form) {
@@ -198,7 +214,7 @@ class App extends Component {
 
       <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user}  receiveUserInformation={this.receiveUserInformation} /> } />
 
-      <Route path="/studentprofile" render={(pickles) => <StudentProfile user={this.state.user} /> } />
+      <Route path="/studentprofile" render={(pickles) => <StudentProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user} /> } />
 
       <Route path="/linktostudents" render={(pickles) => <LinkToStudents user={this.state.user} /> } />
 
@@ -244,6 +260,8 @@ class App extends Component {
 
   render() {
     console.log(this.state.user);
+
+    // this.convertObjectToArray()
 
     return (
       <Router>

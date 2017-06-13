@@ -22,6 +22,7 @@ class StudentProfile extends Component {
   // }
 
   componentDidMount() {
+    this.props.receiveUserInformation()
   //   let uid = this.props.user.uid
   //   base.fetch(`user/${uid}`, {
   //     context: this,
@@ -31,6 +32,7 @@ class StudentProfile extends Component {
   //       this.setState({user: data})
   //     }
   //   });
+
 
   // console.log('componentDidMount')
   firebase.database().ref('messages/').on('value', (snapshot) => {
@@ -72,6 +74,7 @@ class StudentProfile extends Component {
       )
     })
     console.log(this.props.user, this.state.user)
+
     return (
       <div className='container'>
         <br/><br/><br/>
@@ -99,33 +102,30 @@ class StudentProfile extends Component {
             </div>
           </div>
         </div>
-        {/* <div className='card-image'>
-              <img src='images/lemuel-butler.jpg' /> */}
-        {/* <span className='card-title'>{this.props.user.login} Information</span>
-              </div> */}
-
-        {/* <div className='card-content'>
-                github information about each student will go here
-              </div>
-              <div className='card-action'></div>
-              <a href='#'>Not sure what we need</a>
-            </div> */}
 
         <div className='row'>
           <div className='col m7 s12'>
             <div className='card'>
               <div className='card-image'>
-                <img src='images/lemuel-butler.jpg'/>
-                <span className='card-title'>Card Title</span>
+                <img src={this.props.user.avatar_url} width='300px' />
+                <span className='card-title'>{this.props.user.name}</span>
               </div>
 
               <div className="card-content">
-                <p>{this.props.login}</p>
-                <p>This is a test: {this.props.user.availability}</p>
-                <p>This is a test: {this.props.user.objectives}</p>
-                <p>This is a test: {this.props.user.expertise}</p>
-                <p>This is a test: {this.props.user.goals}</p>
-                <p>This is a test: {this.props.user.tech}</p>
+                <h4>Github User Information</h4>
+                <p>Login: {this.props.user.login}</p>
+                <p>Profile: {this.props.user.html_url}</p>
+                <p>Location: {this.props.user.location}</p>
+                <p>Looking for a job: {this.props.user.hirable ? 'No' : 'Yes'}</p>
+                <p>Email: {this.props.user.email}</p>
+                <p>Public Repos: {this.props.user.public_repos}</p>
+                {/* <p>: {this.props.user.}</p> */}
+                <hr />
+                <p><strong>Availability:</strong> {this.props.user.availability}</p>
+                <p><strong>Objectives:</strong> {this.props.user.objectives}</p>
+                <p><strong>Expertise:</strong> {this.props.user.expertise}</p>
+                <p><strong>Goals:</strong> {this.props.user.goals}</p>
+                <p><strong>Tech:</strong> {this.props.user.tech}</p>
                 {console.log(this.props)}
               </div>
 

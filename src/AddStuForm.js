@@ -21,23 +21,22 @@ class AddStuForm extends Component {
       expertise: this.expertise.value,
       goals: this.goals.value,
       tech: this.tech.value,
+      // login: this.props.user.login
     }
 
     console.log(stu);
     // this.props.addStudentInput(stu);
     // this.stuForm.reset();
 
-
-  let uid = this.props.user.uid
-  base.update(`user/${uid}`, {
-    data: {
-      availability: stu.availability,
-      objectives: stu.objectives,
-      expertise: stu.expertise,
-      goals: stu.goals,
-      tech: stu.tech
-    }
-
+    let uid = this.props.user.uid
+    base.update(`user/${uid}`, {
+      data: {
+        availability: stu.availability,
+        objectives: stu.objectives,
+        expertise: stu.expertise,
+        goals: stu.goals,
+        tech: stu.tech
+      }
   })
 
   this.setState({
@@ -74,7 +73,7 @@ class AddStuForm extends Component {
                   <label>Tech Stack</label>
                   <select ref={(input) => this.tech = input} className="browser-default">
                   <option value="" disabled selected>Choose your option</option>
-                  <option value="JS">JavaScript</option>
+                  <option value="Java Script">JavaScript</option>
                   <option value="Java">Java</option>
                   <option value="PHP">PHP</option>
                   <option value="Python">Python</option>
