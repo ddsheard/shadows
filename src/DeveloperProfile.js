@@ -17,29 +17,18 @@ class DeveloperProfile extends Component {
     }
   }
 
-  // componentDidMount () {
-  //   axios.get('https://api.github.com/users/').then(response => {
-  //     console.log(response.data)
-  //     this.setState({owner: response.data});
-  //   })
-  // }
-
-
-
-
+//at somepoint I will need to .push new students to firebase at "loggedInAs" on the App.js component.
+// what the statement will look like:
+// students.push(student)
+//if (students.push())
 
 componentDidMount() {
-  // let uid = this.props.user.uid
-  // base.fetch(`user/${uid}`, {
-  //   context: this,
-  //   asArray: false,
-  //   then(data){
-  //     console.log(data);
-  //     this.setState({user: data})
-  //   }
-  // });
-  //
-  // console.log('componentDidMount')
+  base.fetch(`students`, {
+  context: this,
+  asArray: false}).then(response => {
+    console.log('firebase response', response);
+  });
+
   firebase.database().ref('messages/').on('value',(snapshot) => {
 
     const currentMessages = snapshot.val()
@@ -105,14 +94,14 @@ console.log(nextMessage.secKey);
     return (
       <div className="container">
         <br/><br/><br/>
-        <div className="notification">
+        <div className="notification card">
           <img className="top-circle" src={this.props.user.avatar_url} />
           <p className="noTop">Hi {this.props.user.name}, you have a New Shadow.
           This is a test: {this.state.user.availability}, {this.state.user.company}, {this.state.user.url}</p>
         </div>
 
         <div className="row center-align">
-          <div className="col m4 s12">
+          <div className="col m4 l4">
             <div className="card">
               <div className="container">
 
@@ -125,7 +114,7 @@ console.log(nextMessage.secKey);
             </div>
           </div>
 
-          <div className="col m4 s12">
+          <div className="col m4 l4">
             <div className="card">
               <div className="container">
 
@@ -138,7 +127,7 @@ console.log(nextMessage.secKey);
             </div>
           </div>
 
-          <div className="col m4 s12">
+          <div className="col m4 l4">
             <div className="card">
               <div className="container">
 
@@ -153,21 +142,37 @@ console.log(nextMessage.secKey);
         </div>
 
 <span className="card-title">Chat with Students</span>
+
         <div className="row">
 
           <div className="col m4 s12">
 
             <div className="card-content">
-              <ul className="collection">
-                 <li className="collection-item avatar">
 
-                   <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
+              <ul className="collection">
+
+                 {/* <li className="collection-item avatar"> */}
+
+                   {/* {this.props.user.map((student, index) => {
+                     return(
+                    <li className="collection-item avatar">
+                      <img src={this.props.user.student.avatar_url}  alt="GithubImage" className="circle gituser"/>
+                      <span className="title"><strong>{this.props.user.name}</strong></span>
+                      <p className="userInfo">  Student Availability: {this.props.user.availability}</p>
+                      <p className="userInfo"> Tech Stack: {this.props.user.tech}</p>
+                    </li> */}
+                  )
+                })}
+
+                   {/* <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
                    <span className="title"><strong>{this.props.user.name}</strong></span>
                     <p className="userInfo">  Student Availability: {this.props.user.availability}</p>
-                    <p className="userInfo"> Tech Stack: {this.props.user.tech}</p>
+                    <p className="userInfo"> Tech Stack: {this.props.user.tech}</p> */}
                    {/* <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a> */}
-                 </li>
-               </ul>
+
+
+              </ul>
+
             </div>
 
             <div className="card-action">

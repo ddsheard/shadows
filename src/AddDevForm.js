@@ -15,16 +15,47 @@ class AddDevForm extends Component {
   submitDevForm(event) {
     event.preventDefault();
     console.log('Page is good to move on');
-    const dev = {
-      availability: this.availability.value,
-      company: this.company.value,
-      url: this.url.value,
-      address: this.address.value,
-      objectives: this.objectives.value,
-      interests: this.interests.value,
-      expertist: this.expertist.value,
-      tech: this.tech.value,
+    let dev = {}
+    if (this.availability.value) {
+      dev.availability = this.availability.value
     }
+    if (dev.company = this.company.value) {
+      dev.company = this.company.value
+    }
+    if (dev.url = this.url.value) {
+      dev.url = this.url.value
+    }
+    if (dev.address = this.address.value) {
+      dev.address = this.address.value
+    }
+    if (dev.objectives = this.objectives.value) {
+      dev.objectives = this.objectives.value
+    }
+    if (dev.interests = this.interests.value) {
+      dev.interests = this.interests.value
+    }
+    if (dev.expertist = this.expertist.value) {
+      dev.expertist = this.expertist.value
+    }
+    if (dev.tech = this.tech.value) {
+      dev.tech = this.tech.value
+    }
+
+
+  //  (otherwise update){
+  //
+  // }
+
+    // if (){
+    //   availability: this.availability.value,
+    //   company: this.company.value,
+    //   url: this.url.value,
+    //   address: this.address.value,
+    //   objectives: this.objectives.value,
+    //   interests: this.interests.value,
+    //   expertist: this.expertist.value,
+    //   tech: this.tech.value,
+    // }
 
     console.log(dev);
     // this.props.addDeveloperInput(dev);
@@ -32,16 +63,8 @@ class AddDevForm extends Component {
 
   let uid = this.props.user.uid
   base.update(`user/${uid}`, {
-    data: {
-      availability: dev.availability,
-      company: dev.company,
-      url: dev.url,
-      address: dev.address,
-      objectives: dev.objectives,
-      interests: dev.interests,
-      expertist: dev.expertist,
-      tech: dev.tech
-    }
+    data: dev = {}
+
   })
 
   this.setState({
