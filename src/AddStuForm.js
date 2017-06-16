@@ -23,21 +23,25 @@ class AddStuForm extends Component {
       tech: this.tech.value,
       // login: this.props.user.login
     }
-
+    console.log(this.props.user)
     console.log(stu);
     // this.props.addStudentInput(stu);
     // this.stuForm.reset();
 
     let uid = this.props.user.uid
-    base.update(`user/${uid}`, {
+    base.update(`user/student/${uid}`, {
       data: {
         availability: stu.availability,
         objectives: stu.objectives,
         expertise: stu.expertise,
         goals: stu.goals,
-        tech: stu.tech
+        tech: stu.tech,
+        login: this.props.user.login
+        // type:this.props.user.type
       }
   })
+
+
 
   this.setState({
     submit: true
@@ -84,7 +88,6 @@ class AddStuForm extends Component {
 
                   <button className="waves-effect waves-light btn" onClick={this.submitStuForm.bind(this)} type="submit">Add Student Information</button>
               </form>
-
             </div>
             </div>
           </div>
