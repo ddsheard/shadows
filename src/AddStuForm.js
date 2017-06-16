@@ -21,7 +21,6 @@ class AddStuForm extends Component {
       expertise: this.expertise.value,
       goals: this.goals.value,
       tech: this.tech.value,
-      // login: this.props.user.login
     }
     console.log(this.props.user)
     console.log(stu);
@@ -41,6 +40,29 @@ class AddStuForm extends Component {
       }
   })
 
+/*
+  let stu = {}
+
+  this.stu = this.props.user.login
+
+  if (this.availability.value) {
+    stu.availability = this.availability.value
+  }
+  if (this.objectives.value) {
+    stu.objectives.value = this.objectives.value
+  }
+  if (stu.expertise.value) {
+    stu.expertise = this.expertise.value
+  }
+  if (stu.goals.value) {
+    stu.goals = this.goals.value
+  }
+  if (stu.tech.value) {
+    stu.tech = this.tech.value
+  }
+}
+
+*/
 
 
   this.setState({
