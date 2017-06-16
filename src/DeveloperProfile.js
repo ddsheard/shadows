@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import base from './rebase';
 import firebase from 'firebase';
 // import axios from 'axios';
-
+ // I made a change
 class DeveloperProfile extends Component {
   constructor() {
     super();
