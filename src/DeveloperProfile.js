@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import base from './rebase';
 import firebase from 'firebase';
 // import axios from 'axios';
- // I made a change
+
 class DeveloperProfile extends Component {
   constructor() {
     super();
@@ -95,94 +95,6 @@ console.log(nextMessage.secKey);
     return (
       <div className="container">
         <br/><br/><br/>
-        <div className="notification card">
-          <img className="top-circle" src={this.props.user.avatar_url} />
-          <p className="noTop">Hi {this.props.user.name}, you have a New Shadow.
-          This is a test: {this.state.user.availability}, {this.state.user.company}, {this.state.user.url}</p>
-        </div>
-
-        <div className="row center-align">
-          <div className="col m4 l4">
-            <div className="card">
-              <div className="container">
-
-                <Link to="/linktostudents"><p>Shadow a Student</p></Link>
-                <p>Sriracha bespoke roof party, man bun banh mi microdosing coloring book master cleanse freegan live-edge heirloom. Subway tile meditation messenger bag.</p>
-                <button>Let's Chat</button>
-
-              </div>
-              <br/>
-            </div>
-          </div>
-
-          <div className="col m4 l4">
-            <div className="card">
-              <div className="container">
-
-                <p>text 1</p>
-                <p>Sriracha bespoke roof party, man bun banh mi microdosing coloring book master cleanse freegan live-edge heirloom. Subway tile meditation messenger bag.</p>
-                <button>Let's Chat</button>
-
-              </div>
-              <br/>
-            </div>
-          </div>
-
-          <div className="col m4 l4">
-            <div className="card">
-              <div className="container">
-
-                <p>Chat with other Shadows</p>
-                <p>Sriracha bespoke roof party, man bun banh mi microdosing coloring book master cleanse freegan live-edge heirloom. Subway tile meditation messenger bag.</p>
-                <button>Let's Chat</button>
-
-              </div>
-              <br/>
-            </div>
-          </div>
-        </div>
-
-<span className="card-title">Chat with Students</span>
-
-        <div className="row">
-
-          <div className="col m4 s12">
-
-            <div className="card-content">
-
-              <ul className="collection">
-
-                 {/* <li className="collection-item avatar"> */}
-
-                   {/* {this.props.user.map((student, index) => {
-                     return(
-                    <li className="collection-item avatar">
-                      <img src={this.props.user.student.avatar_url}  alt="GithubImage" className="circle gituser"/>
-                      <span className="title"><strong>{this.props.user.name}</strong></span>
-                      <p className="userInfo">  Student Availability: {this.props.user.availability}</p>
-                      <p className="userInfo"> Tech Stack: {this.props.user.tech}</p>
-                    </li> */}
-                  )
-                })}
-
-                   {/* <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
-                   <span className="title"><strong>{this.props.user.name}</strong></span>
-                    <p className="userInfo">  Student Availability: {this.props.user.availability}</p>
-                    <p className="userInfo"> Tech Stack: {this.props.user.tech}</p> */}
-                   {/* <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a> */}
-
-
-              </ul>
-
-            </div>
-
-            <div className="card-action">
-              {/* <Link to="/linkToStudents">Link to Students</Link> */}
-              <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Chat</button>
-            </div>
-
-          </div>
-        </div>
 
 
         <div className="row">
@@ -190,25 +102,33 @@ console.log(nextMessage.secKey);
           <div className="col m7 s12">
             <div className="card">
               <div className="card-image">
-                <img src="images/lemuel-butler.jpg"/>
-                <span className="card-title">Card Title</span>
+                <img src={this.props.user.avatar_url} width='200px' />
+                <span className='card-title'>{this.props.user.name}</span>
               </div>
 
               <div className="card-content">
-                <p>This is a test: {this.props.user.availability}</p>
-                <p>This is a test: {this.props.user.company}</p>
-                <p>This is a test: {this.props.user.url}</p>
-                <p>This is a test: {this.props.user.address}</p>
-                <p>This is a test: {this.props.user.objectives}</p>
-                <p>This is a test: {this.props.user.interests}</p>
-                <p>This is a test: {this.props.user.expertist}</p>
-                <p>This is a test: {this.props.user.tech}</p>
+                <h4>Github User Information</h4>
+                <p>Login: {this.props.user.login}</p>
+                <p>Profile: {this.props.user.html_url}</p>
+                <p>Location: {this.props.user.location}</p>
+                {/* <p>Looking for a job: {this.props.user.hirable ? 'No' : 'Yes'}</p> */}
+                {/* <p>Email: {this.props.user.email}</p> */}
+                <p>Public Repos: {this.props.user.public_repos}</p>
+                <hr/>
+                <p><b>Availability</b>: {this.props.user.availability}</p>
+                <p><b>Company</b>: {this.props.user.company}</p>
+                <p><b>Url</b>: {this.props.user.url}</p>
+                <p><b>Address</b>: {this.props.user.address}</p>
+                <p><b>Objectives</b>: {this.props.user.objectives}</p>
+                <p><b>Interests</b>: {this.props.user.interests}</p>
+                <p><b>Expertist</b>: {this.props.user.expertist}</p>
+                <p><b>Tech</b>: {this.props.user.tech}</p>
                 {console.log(this.state)}
               </div>
 
-              <div className="card-action">
+              {/* <div className="card-action">
                 <a href="#">This is a link</a>
-              </div>
+              </div> */}
             </div>
           </div>
 

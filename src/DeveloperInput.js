@@ -79,7 +79,7 @@ class DeveloperInput extends Component {
 
         <div className="shadowDevInfo">
 
-          <AddDevForm addDeveloperInput={this.props.addDeveloperInput} user={this.props.user}/>
+          <AddDevForm addDeveloperInput={this.props.addDeveloperInput} user={this.props.user} type={this.props.type}/>
 
         </div>
       </div>

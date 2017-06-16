@@ -185,6 +185,11 @@ class App extends Component {
   console.log('hello');
   }
 
+  getUserFormData() {
+    let uid = this.props.user.uid
+    base.update(`user/student/${uid}`, {})
+  }
+
   // checkingIfStudentUserHasForm() {
   //   console.log(this.state.form);
   //   if (this.state.form) {
@@ -210,9 +215,9 @@ class App extends Component {
 
       <Route path="/home" render={(pickles) => <Home mainLogIn={this.mainLogIn} /> } />
 
-      <Route path="/developerprofile" render={(pickles) => <DeveloperProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user} /> } />
+      <Route path="/developerprofile" render={(pickles) => <DeveloperProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user}  /> } />
 
-      <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} user={this.state.user} /> } />
+      <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} user={this.state.user} type={this.state.type} /> } />
 
       <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user}  receiveUserInformation={this.receiveUserInformation} /> } />
 

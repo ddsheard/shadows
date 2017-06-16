@@ -16,6 +16,9 @@ class AddDevForm extends Component {
     event.preventDefault();
     console.log('Page is good to move on');
     let dev = {}
+
+    dev.login = this.props.user.login
+
     if (this.availability.value) {
       dev.availability = this.availability.value
     }
@@ -62,8 +65,10 @@ class AddDevForm extends Component {
     // this.devForm.reset();
 
   let uid = this.props.user.uid
-  base.update(`user/${uid}`, {
-    data: dev = {}
+  let type = this.props.type
+  base.fetch(`user/${type}/${uid}`, {
+    data: dev,
+    context: this
 
   })
 
@@ -102,7 +107,7 @@ class AddDevForm extends Component {
                 <label>Tech Stack</label>
                 <select ref={(input) => this.tech = input} className="browser-default">
                   <option value="" disabled selected>Choose your option</option>
-                  <option value="JS">JavaScript</option>
+                  <option value="JavaScript">JavaScript</option>
                   <option value="Java">Java</option>
                   <option value="PHP">PHP</option>
                   <option value="Python">Python</option>
