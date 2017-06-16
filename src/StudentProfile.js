@@ -107,7 +107,7 @@ class StudentProfile extends Component {
           <div className='col m7 s12'>
             <div className='card'>
               <div className='card-image'>
-                <img src={this.props.user.avatar_url} width='300px' />
+                <img src={this.props.user.avatar_url} width='200px' />
                 <span className='card-title'>{this.props.user.name}</span>
               </div>
 
@@ -121,11 +121,11 @@ class StudentProfile extends Component {
                 <p>Public Repos: {this.props.user.public_repos}</p>
                 {/* <p>: {this.props.user.}</p> */}
                 <hr />
-                <p><strong>Availability:</strong> {this.props.user.availability}</p>
-                <p><strong>Objectives:</strong> {this.props.user.objectives}</p>
-                <p><strong>Expertise:</strong> {this.props.user.expertise}</p>
-                <p><strong>Goals:</strong> {this.props.user.goals}</p>
-                <p><strong>Tech:</strong> {this.props.user.tech}</p>
+                <p><b>Availability:</b> {this.props.user.availability}</p>
+                <p><b>Objectives:</b> {this.props.user.objectives}</p>
+                <p><b>Expertise:</b> {this.props.user.expertise}</p>
+                <p><b>Goals:</b> {this.props.user.goals}</p>
+                <p><b>Tech:</b> {this.props.user.tech}</p>
                 {console.log(this.props)}
               </div>
 
@@ -135,6 +135,7 @@ class StudentProfile extends Component {
             </div>
           </div>
 
+          // LIST OF STUDENTS AVAILABLE
           <div className='col m5 s12'>
             <div className='card'>
               <div className='card-image'>
@@ -149,7 +150,7 @@ class StudentProfile extends Component {
                     <span className='title'>
                       <strong>{this.props.user.name}</strong>
                     </span>
-                    <p className='userInfo'>Developer Availability: {this.props.user.availability}</p>
+                    <p className='userInfo'>Availability: {this.props.user.availability}</p>
                     <p className='userInfo'>Tech Stack: {this.props.user.tech}</p>
                   </li>
                 </ul>

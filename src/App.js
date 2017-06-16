@@ -161,19 +161,21 @@ class App extends Component {
   //   })
   // }
 
+  // CONVERTING OBJECTS FROM FB AND GITHUB INTO ARRAY
   // convertObjectToArray() {
   //   let arr = Object.keys(everyone)
   //   // console.log(arr)
   //   this.setState({
-  //     everyone:{this.state, response.data}
+  //     everyone:{...this.state, ...response.data}
   //   })
   // }
 
   //Getting information from firebase & setting the state for github and fb
   receiveUserInformation() {
   let uid = this.state.user.uid
+  let type = this.state.type
   console.log(uid);
-  base.fetch(`user/${uid}`, {
+  base.fetch(`user/${type}/${uid}`, {
     context: this,
     asArray: false}).then(response => {
       console.log('firebase response', response);
