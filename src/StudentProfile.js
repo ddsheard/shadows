@@ -23,6 +23,7 @@ class StudentProfile extends Component {
 
   componentDidMount() {
     this.props.receiveUserInformation()
+
   //   let uid = this.props.user.uid
   //   base.fetch(`user/${uid}`, {
   //     context: this,
@@ -97,7 +98,7 @@ class StudentProfile extends Component {
                 <input onChange={this.updateMessage} type='text' placeholder='Message' />
                 <br />
                 <button onClick={this.submitMessage} className='waves-effect waves-light btn'>Submit Message</button>
-              </div>
+              </div>s
               <br />
             </div>
           </div>
@@ -135,7 +136,7 @@ class StudentProfile extends Component {
             </div>
           </div>
 
-          // LIST OF STUDENTS AVAILABLE
+          {/* LIST OF STUDENTS AVAILABLE*/}
           <div className='col m5 s12'>
             <div className='card'>
               <div className='card-image'>
