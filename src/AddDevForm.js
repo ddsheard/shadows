@@ -14,10 +14,9 @@ class AddDevForm extends Component {
 
   submitDevForm(event) {
     event.preventDefault();
-    console.log('Page is good to move on');
     let dev = {}
 
-    dev.login = this.props.user.login
+    dev.login = this.props.user.login;
 
     if (this.availability.value) {
       dev.availability = this.availability.value
@@ -44,38 +43,10 @@ class AddDevForm extends Component {
       dev.tech = this.tech.value
     }
 
-
-  //  (otherwise update){
-  //
-  // }
-
-    // if (){
-    //   availability: this.availability.value,
-    //   company: this.company.value,
-    //   url: this.url.value,
-    //   address: this.address.value,
-    //   objectives: this.objectives.value,
-    //   interests: this.interests.value,
-    //   expertist: this.expertist.value,
-    //   tech: this.tech.value,
-    // }
-
-    console.log(dev);
-    // this.props.addDeveloperInput(dev);
-    // this.devForm.reset();
-
-  let uid = this.props.user.uid
-  let type = this.props.type
-  base.fetch(`user/${type}/${uid}`, {
-    data: dev,
-    context: this
-
-  })
-
-  this.setState({
-    submit: true
-  })
-}
+    let uid = this.props.user.uid;
+    let type = this.props.type;
+    this.props.addDeveloperInput(dev, uid, type);
+  }
 
 
   render() {
