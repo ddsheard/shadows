@@ -19,7 +19,7 @@ class ShadowList extends Component {
       this.setState({
         user: {...this.state.user, ...response}})
   })
-  console.log('hello');
+  console.log('hello will this work');
   }
 
   render(){
