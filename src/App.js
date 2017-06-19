@@ -183,12 +183,30 @@ class App extends Component {
         user: {...this.state.user, ...response}})
   })
   console.log('hello');
+  this.setState({
+    submit: true
+  })
   }
 
-  getUserFormData() {
-    let uid = this.props.user.uid
-    base.update(`user/student/${uid}`, {})
+  addDeveloperInput(devData, uid, type) {
+    base.update(`user/${type}/${uid}`, {
+      data: devData
+    })
   }
+
+
+  // base.fetch(`user/${type}/${uid}`, {
+  //   data: dev,
+  //   context: this
+  // })
+  //
+  // this.setState({
+  //   submit: true
+  // })
+
+
+
+
 
   // checkingIfStudentUserHasForm() {
   //   console.log(this.state.form);
