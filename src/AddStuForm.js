@@ -35,7 +35,9 @@ class AddStuForm extends Component {
         expertise: stu.expertise,
         goals: stu.goals,
         tech: stu.tech,
-        login: this.props.user.login
+        login: this.props.user.login,
+        name: this.props.user.name,
+        avatar: this.props.user.avatar_url
         // type:this.props.user.type
       }
   })
@@ -43,7 +45,9 @@ class AddStuForm extends Component {
 /*
   let stu = {}
 
-  this.stu = this.props.user.login
+  this.stu = this.props.user.login,
+  this.stu = this.props.user.name,
+  this.stu = this.props.user.avatar_url
 
   if (this.availability.value) {
     stu.availability = this.availability.value
