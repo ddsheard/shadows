@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import base from './rebase';
 import firebase from 'firebase';
+import ShadowList from './ShadowList';
 // import axios from 'axios';
 
 class StudentProfile extends Component {
@@ -136,14 +137,15 @@ class StudentProfile extends Component {
             </div>
           </div>
 
+          <ShadowList user={this.props.user} type='developer'/>
           {/* LIST OF STUDENTS AVAILABLE*/}
-          <div className='col m5 s12'>
-            <div className='card'>
+          {/* <div className='col m5 s12'> */}
+            {/* <div className='card'>
               <div className='card-image'>
                 {/* <span className='card-title'>Link to Developers</span> */}
-              </div>
+              {/* </div> */} */}
 
-              <div className='card-content'>
+              {/* <div className='card-content'>
                 <ul className='collection'>
                   <li className='collection-item avatar'>
                     <span className='card-title'>Link to Developers</span>
@@ -155,14 +157,14 @@ class StudentProfile extends Component {
                     <p className='userInfo'>Tech Stack: {this.props.user.tech}</p>
                   </li>
                 </ul>
-              </div>
-              <div className='card-action'>
+              </div> */}
+              {/* <div className='card-action'>
                 <Link to='/linkToDeveloper'>Link to Developer</Link>
-              </div>
+              </div> */}
 
-            </div>
-          </div>
-        </div>
+            {/* </div> */}s
+          {/* </div> */}
+        // </div>
       </div>
     )
   }

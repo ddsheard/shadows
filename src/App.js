@@ -9,6 +9,7 @@ import StudentLogIn from './StudentLogIn';
 import StudentInput from './StudentInput';
 import StudentProfile from './StudentProfile';
 import LinkToStudents from './LinkToStudents';
+import ShadowList from './ShadowList';
 // import Err from './Err';
 import base from './rebase';
 import {
