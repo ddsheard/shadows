@@ -25,8 +25,8 @@ window.base = base;
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.state = {
       user: {},
       type: '',
@@ -34,7 +34,7 @@ class App extends Component {
       // everyone: []
     }
     //Input fields for Dev and student -firebase
-    // this.addDeveloperInput = this.addDeveloperInput.bind(this);
+    this.addDeveloperInput = this.addDeveloperInput.bind(this);
     // this.addStudentInput = this.addStudentInput.bind(this);
 
   }
@@ -183,15 +183,14 @@ class App extends Component {
         user: {...this.state.user, ...response}})
   })
   console.log('hello');
-  this.setState({
-    submit: true
-  })
   }
 
   addDeveloperInput(devData, uid, type) {
     base.update(`user/${type}/${uid}`, {
       data: devData
-    })
+    });
+
+    this.context.router.history.push('/developerprofile');
   }
 
 
@@ -289,7 +288,6 @@ class App extends Component {
     // this.convertObjectToArray()
 
     return (
-      <Router>
         <div>
           <nav>
           <ul>
@@ -299,10 +297,14 @@ class App extends Component {
         </nav>
         {this.routes()}
         </div>
-      </Router>
     );
 
   }
 }
+
+App.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};
+
 
 export default App;
