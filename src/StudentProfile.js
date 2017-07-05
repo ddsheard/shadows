@@ -72,6 +72,7 @@ class StudentProfile extends Component {
           </div>
         </div>
       </div>
+      //doing a push pull on 7/5
     )
   }
 }
