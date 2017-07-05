@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import base from './rebase';
 import firebase from 'firebase';
+import ShadowList from './ShadowList';
 // import axios from 'axios';
 
 class DeveloperProfile extends Component {
@@ -135,11 +136,12 @@ console.log(nextMessage.secKey);
 
           <div className="col m5 s12">
             <div className="card">
-              <div className="card-image">
-                {/* <span className="card-title">Link to Students</span> */}
-              </div>
+              <ShadowList user={this.props.user} type='student' />
+              {/* <div className="card-image">
+                <span className="card-title">Link to Students</span>
+              </div> */}
 
-              <div className="card-content">
+              {/* <div className="card-content">
                 <ul className="collection">
                    <li className="collection-item avatar">
                      <span className="card-title">Link to Students</span>
@@ -147,10 +149,10 @@ console.log(nextMessage.secKey);
                      <span className="title"><strong>{this.props.user.name}</strong></span>
                       <p className="userInfo">  Student Availability: {this.state.user.availability}</p>
                       <p className="userInfo"> Tech Stack: {this.state.user.tech}</p>
-                     {/* <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a> */}
+                     <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
                    </li>
                  </ul>
-              </div>
+              </div> */}
 
               <div className="card-action">
                 <Link to="/linkToStudents">Link to Students</Link>
