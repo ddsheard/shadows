@@ -93,6 +93,22 @@ a {
    left: 3.5%;
  }
 
+ .userBorder {
+   border-style: solid;
+   border-width: thin;
+   border-color: grey;
+   padding: 1em;
+   margin-bottom: 1em;
+ }
+
+ .MessagePane-List {
+   border: thin solid pink;
+ }
+
+ .Submit {
+   
+ }
+
  /*.image-circle {
   border-radius: 50%;
   width: 50%;

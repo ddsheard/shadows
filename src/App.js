@@ -10,6 +10,7 @@ import StudentInput from './StudentInput';
 import StudentProfile from './StudentProfile';
 import LinkToStudents from './LinkToStudents';
 import ShadowList from './ShadowList';
+import Chat from './Chat';
 // import Err from './Err';
 import base from './rebase';
 import {
@@ -32,11 +33,11 @@ class App extends Component {
       user: {},
       type: '',
       form: true,
-      // everyone: []
+      uid:''
     }
-    //Input fields for Dev and student -firebase
+    //Input fields for Dev and Student -firebase
     this.addDeveloperInput = this.addDeveloperInput.bind(this);
-    // this.addStudentInput = this.addStudentInput.bind(this);
+    this.addStudentInput = this.addStudentInput.bind(this);
 
   }
   // FETCH ATTEMPTS
@@ -107,6 +108,7 @@ class App extends Component {
       // THIS IS SETTING THE STATE this.setState
       this.setState({
         user: data.user,
+        uid: data.user.uid,
         token: data.credential.accessToken,
         type: type,
         form: {}
@@ -127,6 +129,7 @@ class App extends Component {
     //basic
     base.authWithOAuthPopup('github', authHandler);
     // this.props.history.push(`/developerinput/`);
+
     }
 
     mainLogIn () {
@@ -190,9 +193,21 @@ class App extends Component {
     base.update(`user/${type}/${uid}`, {
       data: devData
     });
-
+    console.log(devData);
+    console.log(this.context);
     this.context.router.history.push('/developerprofile');
   }
+
+  //ADDED TODAY - WEDNESDAY 6/28
+  addStudentInput(stuData, uid, type) {
+    base.update(`user/${type}/${uid}`, {
+      data: stuData
+    });
+    console.log(stuData);
+    console.log(this.context);
+    this.context.router.history.push('/studentprofile');
+  }
+  /////////////////
 
 
   // base.fetch(`user/${type}/${uid}`, {
@@ -231,28 +246,33 @@ class App extends Component {
     <Switch>
       <Route exact path="/home" render={(pickles) => this.mainLogIn()} />
 
-      <Route path="/home" render={(pickles) => <Home mainLogIn={this.mainLogIn} /> } />
+      <Route path="/home" render={(pickles) => <Home mainLogIn={this.mainLogIn}
+       /> } />
 
-      <Route path="/developerprofile" render={(pickles) => <DeveloperProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user}  /> } />
+      <Route path="/developerprofile" render={(pickles) => <DeveloperProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user}
+       /> } />
 
-      <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} user={this.state.user} type={this.state.type} /> } />
+      <Route path="/developerinput" render={(pickles) => <DeveloperInput addDeveloperInput={this.addDeveloperInput} user={this.state.user} type={this.state.type} /> }  />
 
-      <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user}  receiveUserInformation={this.receiveUserInformation} /> } />
+      <Route path="/studentinput" render={(pickles) => <StudentInput addStudentInput={this.addStudentInput} user={this.state.user} receiveUserInformation={this.receiveUserInformation} type={this.state.type} /> } />
+      {/* type={this.state.type} MAY NEED TO REPLACE THIS WITH RECEIVE_USER_INFORMATION 6/28*/}
 
-      <Route path="/studentprofile" render={(pickles) => <StudentProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user} /> } />
+      <Route path="/studentprofile" render={(pickles) => <StudentProfile receiveUserInformation={this.receiveUserInformation.bind(this)} user={this.state.user}
+       /> } />
 
-      <Route path="/linktostudents" render={(pickles) => <LinkToStudents user={this.state.user} /> } />
+      <Route path="/linktostudents" render={(pickles) => <LinkToStudents user={this.state.user}  /> } />
 
-      <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId} />} />
+      <Route path="/developerlogin" render={(pickles) => <DeveloperLogIn developerId={this.props.developerId}  />} />
 
-      <Route path="/studentlogin" render={(pickles) => <StudentLogIn studentId={this.props.studentId} />} />
+      <Route path="/studentlogin" render={(pickles) => <StudentLogIn studentId={this.props.studentId}  />} />
     </Switch>
   )}
 
   forceAuthRoutes() {
     return (
     <Switch>
-      <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}  />} />
+      <Route path="/home" render={(pickles) => <Home clickedOnDev={this.clickedOnDev.bind(this)} clickedOnStudent={this.clickedOnStudent.bind(this)}
+         />} />
       <Redirect to="/home" />
     </Switch>
   )}

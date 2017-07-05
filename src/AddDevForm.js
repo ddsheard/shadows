@@ -17,31 +17,38 @@ class AddDevForm extends Component {
     let dev = {}
 
     dev.login = this.props.user.login;
+    dev.name = this.props.user.name;
+    dev.avatar = this.props.user.avatar_url;
+    dev.uid = this.props.user.uid;
 
+
+    if (this.company.value) {
+      dev.company = this.company.value
+    }
     if (this.availability.value) {
       dev.availability = this.availability.value
     }
-    if (dev.company = this.company.value) {
-      dev.company = this.company.value
-    }
-    if (dev.url = this.url.value) {
+    if (this.url.value) {
       dev.url = this.url.value
     }
-    if (dev.address = this.address.value) {
+    if (this.address.value) {
       dev.address = this.address.value
     }
-    if (dev.objectives = this.objectives.value) {
+    if (this.objectives.value) {
       dev.objectives = this.objectives.value
     }
-    if (dev.interests = this.interests.value) {
+    if (this.interests.value) {
       dev.interests = this.interests.value
     }
-    if (dev.expertist = this.expertist.value) {
+    if (this.expertist.value) {
       dev.expertist = this.expertist.value
     }
-    if (dev.tech = this.tech.value) {
+    if (this.tech.value) {
       dev.tech = this.tech.value
     }
+    // if (dev.tech = this.tech.value) {
+    //   dev.tech = this.tech.value
+    // }
 
     let uid = this.props.user.uid;
     let type = this.props.type;
