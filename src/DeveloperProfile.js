@@ -143,7 +143,6 @@ console.log(nextMessage.secKey);
 
 
 
-
               {/* <div className="card-action">
                 <Link to="/linkToStudents">Link to Students</Link>
                 <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Chat</button>
