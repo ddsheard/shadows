@@ -133,36 +133,22 @@ console.log(nextMessage.secKey);
             </div>
           </div>
 
-
-          <div className="col m5 s12">
-            <div className="card">
-              <ShadowList user={this.props.user} type='student' />
-              {/* <div className="card-image">
-                <span className="card-title">Link to Students</span>
-              </div> */}
-
-              {/* <div className="card-content">
-                <ul className="collection">
-                   <li className="collection-item avatar">
-                     <span className="card-title">Link to Students</span>
-                     <img src={this.props.user.avatar_url}  alt="GithubImage" className="circle gituser"/>
-                     <span className="title"><strong>{this.props.user.name}</strong></span>
-                      <p className="userInfo">  Student Availability: {this.state.user.availability}</p>
-                      <p className="userInfo"> Tech Stack: {this.state.user.tech}</p>
-                     <a href="#!" className="secondary-content"><i className="material-icons">grade</i></a>
-                   </li>
-                 </ul>
-              </div> */}
-
-              <div className="card-action">
-                <Link to="/linkToStudents">Link to Students</Link>
-                <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Chat</button>
+          <div className='row'>
+            <div className='col m5 s12'>
+              <div className='card'>
+                  <ShadowList user={this.props.user}  myType='developer' type='student'/>
               </div>
             </div>
           </div>
+
+
+
+              {/* <div className="card-action">
+                <Link to="/linkToStudents">Link to Students</Link>
+                <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn">Chat</button>
+              </div> */}
+
       </div>
-
-
 
       </div>
     )
