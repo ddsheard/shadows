@@ -14,64 +14,71 @@ class AddStuForm extends Component {
 
   submitStuForm(event) {
     event.preventDefault();
-    console.log("Page is good to move on");
-    const stu = {
-      availability: this.availability.value,
-      objectives: this.objectives.value,
-      expertise: this.expertise.value,
-      goals: this.goals.value,
-      tech: this.tech.value,
-    }
-    console.log(this.props.user)
-    console.log(stu);
-    // this.props.addStudentInput(stu);
-    // this.stuForm.reset();
+  //   console.log("Page is good to move on");
+  //   const stu = {
+  //     availability: this.availability.value,
+  //     objectives: this.objectives.value,
+  //     expertise: this.expertise.value,
+  //     goals: this.goals.value,
+  //     tech: this.tech.value,
+  //   }
+  //   console.log(this.props.user)
+  //   console.log(stu);
+  //   // this.props.addStudentInput(stu);
+  //   // this.stuForm.reset();
+  //
+  //   let uid = this.props.user.uid
+  //   base.update(`user/student/${uid}`, {
+  //     data: {
+  //       availability: stu.availability,
+  //       objectives: stu.objectives,
+  //       expertise: stu.expertise,
+  //       goals: stu.goals,
+  //       tech: stu.tech,
+  //       login: this.props.user.login,
+  //       name: this.props.user.name,
+  //       avatar: this.props.user.avatar_url,
+  //       uid: this.props.user.uid
+  //       // type:this.props.user.type
+  //     }
+  // })
 
-    let uid = this.props.user.uid
-    base.update(`user/student/${uid}`, {
-      data: {
-        availability: stu.availability,
-        objectives: stu.objectives,
-        expertise: stu.expertise,
-        goals: stu.goals,
-        tech: stu.tech,
-        login: this.props.user.login,
-        name: this.props.user.name,
-        avatar: this.props.user.avatar_url
-        // type:this.props.user.type
-      }
-  })
 
-/*
   let stu = {}
 
-  this.stu = this.props.user.login,
-  this.stu = this.props.user.name,
-  this.stu = this.props.user.avatar_url
+  //this.stu = this.props.user.login, OLD WAY
+  stu.login = this.props.user.login;
+  stu.name = this.props.user.name;
+  stu.avatar = this.props.user.avatar_url;
+  stu.uid = this.props.user.uid;
 
   if (this.availability.value) {
     stu.availability = this.availability.value
   }
   if (this.objectives.value) {
-    stu.objectives.value = this.objectives.value
+    stu.objectives = this.objectives.value
   }
-  if (stu.expertise.value) {
+  if (this.expertise.value) {
     stu.expertise = this.expertise.value
   }
-  if (stu.goals.value) {
+  if (this.goals.value) {
     stu.goals = this.goals.value
   }
-  if (stu.tech.value) {
+  if (this.tech.value) {
     stu.tech = this.tech.value
   }
-}
 
-*/
+  let uid = this.props.user.uid;
+  let type = this.props.type;
+  console.log(stu, uid, type);
+  this.props.addStudentInput(stu, uid, type);
 
 
-  this.setState({
-    submit: true
-  })
+
+
+  // this.setState({
+  //   submit: true
+  // })
 
 }
   render() {
@@ -102,7 +109,7 @@ class AddStuForm extends Component {
                 <div>
                   <label>Tech Stack</label>
                   <select ref={(input) => this.tech = input} className="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
+                  <option disabled selected>Choose your option</option>
                   <option value="Java Script">JavaScript</option>
                   <option value="Java">Java</option>
                   <option value="PHP">PHP</option>
