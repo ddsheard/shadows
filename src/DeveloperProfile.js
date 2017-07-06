@@ -96,6 +96,11 @@ console.log(nextMessage.secKey);
     return (
       <div className="container">
         <br/><br/><br/>
+        <div className='notification'>
+          <img className="top-circle" src={this.props.user.avatar_url}/>
+          <p className='noTop'>Hello {this.props.user.name},
+          </p>
+        </div>
 
 
         <div className="row">
