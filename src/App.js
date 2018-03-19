@@ -11,7 +11,6 @@ import StudentProfile from './StudentProfile';
 import LinkToStudents from './LinkToStudents';
 import ShadowList from './ShadowList';
 import Chat from './Chat';
-// import Err from './Err';
 import base from './rebase';
 import {
   BrowserRouter as Router,
@@ -20,7 +19,6 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-// import logo from './logo.svg';
 import './App.css';
 
 window.base = base;
@@ -59,8 +57,6 @@ class App extends Component {
   //   //   asArray: true
   //   // });
   // }
-
-
 
 
   // addDeveloperInput(dev) {

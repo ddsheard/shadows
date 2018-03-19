@@ -68,18 +68,25 @@ class AddDevForm extends Component {
             <div className="card-content white-text">
               <span className="card-title">Developer Form</span>
               <form ref={(input) => this.devForm = input} className="dev-edit" onSubmit={(e) => this.submitDevForm(e)}>
-                <input ref={(input) => this.availability = input} type="text" placeholder="Developer Availability" />
-                <input ref={(input) => this.company = input} type="text" placeholder="Developer Company" />
-                <input ref={(input) => this.url = input} type="text" placeholder="Developer Company URL" />
-                <input ref={(input) => this.address = input} type="text" placeholder="Developer Company Address" />
+              <p>Developer Availability</p>
+                <input ref={(input) => this.availability = input} type="text" placeholder="Input Availability" />
+              <p>Company</p>
+                <input ref={(input) => this.company = input} type="text" placeholder="Input Company" />
+              <p>Company Website</p>
+                <input ref={(input) => this.url = input} type="text" placeholder="Input Company Website" />
+              <p>Company Address</p>
+                <input ref={(input) => this.address = input} type="text" placeholder="Input Company Address" />
                 <div>
-                <textarea ref={(input) => this.objectives = input} type="text" className="materialize-textarea" placeholder="Developer Objectives"></textarea>
+              <p>Your Objectives</p>
+                <textarea ref={(input) => this.objectives = input} type="text" className="materialize-textarea" placeholder="Input Objectives"></textarea>
                 </div>
                 <div>
-                <textarea ref={(input) => this.interests = input} type="text" className="materialize-textarea" placeholder="Developer Interests"></textarea>
+              <p>Your Interests</p>
+                <textarea ref={(input) => this.interests = input} type="text" className="materialize-textarea" placeholder="Input Interests"></textarea>
                 </div>
                 <div>
-                <textarea ref={(input) => this.expertist = input} type="text" className="materialize-textarea" placeholder="Developer Expertist"></textarea>
+              <p>Your Expertise</p>
+                <textarea ref={(input) => this.expertist = input} type="text" className="materialize-textarea" placeholder="Input Expertise"></textarea>
                 </div>
                 <div>
                 <label>Tech Stack</label>
